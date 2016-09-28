@@ -12,10 +12,7 @@ import org.newdawn.slick.geom.Vector2f;
  *
  * @author 0199831
  */
-public abstract class Movable {
-
-    /** Posição atual do objeto */
-    protected Vector2f pos = new Vector2f();
+public abstract class Movable extends SpacialElement {
 
     /**
      * Incrementa a posição no eixo X
@@ -51,24 +48,6 @@ public abstract class Movable {
      */
     protected void subY(float y) {
         pos.y -= y;
-    }
-
-    /**
-     * Retorna a posição atual no eixo X
-     *
-     * @return float
-     */
-    protected float getX() {
-        return pos.getX();
-    }
-
-    /**
-     * Retorna a posição atual no eixo Y
-     *
-     * @return float
-     */
-    protected float getY() {
-        return pos.getY();
     }
 
     /**

@@ -30,6 +30,7 @@ public class Player3 extends Character implements InputProviderListener {
     // https://github.com/dmitrykolesnikovich/featurea/tree/master/engines/platformer
     Shape shape = new Circle(0f, 0f, 25f);
     Vector2f mPos = new Vector2f();
+    Borda tst = new Borda();
 
     /** Objeto responsável pelo gerenciamento de comandos */
     Comandos comandos = new Comandos();
@@ -78,6 +79,11 @@ public class Player3 extends Character implements InputProviderListener {
         Input input = gc.getInput();
         mPos.x = input.getAbsoluteMouseX();
         mPos.y = input.getAbsoluteMouseY();
+
+        if (this.isCollidingWith(tst)){
+            System.out.println("Collide!");
+        } else System.out.println();
+
         animacoes.stop();
 //        System.out.println("Key: " + AnimationEnum.getByName(Keyboard.getKeyName(Keyboard.getEventKey())).test()); // USAR ISSO PRA DETECTAR O MOVIMENTO
 //        AnimationEnum.getByName(Keyboard.getKeyName(Keyboard.getEventKey())).test();
@@ -123,6 +129,7 @@ public class Player3 extends Character implements InputProviderListener {
             shape.setCenterY(mPos.y);
             g.fill(shape);
         }
+        g.fill(tst.getTst());
         // Move e renderiza as animações
         animacoes.move(pos);
         animacoes.render(gc, g);
@@ -146,6 +153,44 @@ public class Player3 extends Character implements InputProviderListener {
     @Override
     public void controlReleased(Command command) {
         comandos.unsetComandos(command);
+    }
+
+    /**
+     * Método responsável por detectar colisões
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean isCollidingWith(SpacialElement obj) {
+
+//        http://blog.sklambert.com/html5-canvas-game-2d-collision-detection/
+//        if (object1.x < object2.x + object2.width  && object1.x + object1.width  > object2.x &&
+//		object1.y < object2.y + object2.height && object1.y + object1.height > object2.y) {
+// The objects are touching
+//}
+
+        // Verifica se está ocorrendo colisão
+        return getX() < obj.getX() + obj.getWidth() && getX() + getWidth() > obj.getX() &&
+                getY() < obj.getY() + obj.getHeight() && getY() + getHeight() > obj.getY();
+    }
+
+    private class Borda extends Movable {
+        Shape tst;
+
+        public Borda() {
+            tst = new Circle(100f, 100f, 25f);
+            setX(100f);
+            setY(100f);
+            setHeight(25);
+            setWidth(25);
+        }
+
+        public Shape getTst(){
+//            System.out.println("X: " + getX() + " Y: " + getY());
+            return tst;
+        }
+
     }
 
 }

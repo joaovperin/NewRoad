@@ -189,4 +189,15 @@ public class Player extends Character {
         character.update(delta);
     }
 
+    /**
+     * Método responsável por detectar colisões
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean isCollidingWith(SpacialElement obj) {
+        return false;
+    }
+
 }

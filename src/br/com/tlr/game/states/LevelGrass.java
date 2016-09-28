@@ -47,15 +47,8 @@ public class LevelGrass extends BasicGameState {
             { 0, grassMap.getWidth() * 32.0f }, // X axis
             { 0, grassMap.getHeight() * 28.7f } // Y axis
         };
-        // Instancia o jogador
-//        player = new Player("player.png", 4, movableArea);
-        // Instancia o jogador 2
-//        player2 = new Player2("player.png", 4, movableArea);
-        // Instancia o jogador 3
+        // Instancia e carrega sprites e animações do jogador 3
         player3 = new Player3("player.png", 4, movableArea);
-        // Carrega os sprites e animações dos jogadores
-//        player.load(container);
-//        player2.load(container);
         player3.load(container);
     }
 

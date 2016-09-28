@@ -55,4 +55,12 @@ public abstract class Character extends Movable implements Animable {
         this.movableArea = movableArea;
     }
 
+    /**
+     * Método responsável por detectar colisões
+     *
+     * @param obj
+     * @return
+     */
+    public abstract boolean isCollidingWith(SpacialElement obj);
+
 }

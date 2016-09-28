@@ -111,4 +111,15 @@ public class Player2 extends Character {
         animacoes.render(container, g);
     }
 
+    /**
+     * Método responsável por detectar colisões
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean isCollidingWith(SpacialElement obj) {
+        return false;
+    }
+
 }
