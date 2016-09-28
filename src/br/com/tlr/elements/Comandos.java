@@ -110,4 +110,21 @@ public class Comandos {
         return right;
     }
 
+    public boolean isAtkCmd() {
+        return attack;
+    }
+
+    public boolean canMoveUp(float current, float target){
+        return !(current <= target);
+    }
+    public boolean canMoveDown(float current, float target){
+        return !(current >= target);
+    }
+    public boolean canMoveLeft(float current, float target){
+        return ! (current <= target);
+    }
+    public boolean canMoveRight(float current, float target){
+        return !(current >= target);
+    }
+
 }

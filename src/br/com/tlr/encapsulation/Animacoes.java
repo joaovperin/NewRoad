@@ -5,6 +5,7 @@
  */
 package br.com.tlr.encapsulation;
 
+import br.com.tlr.elements.Animable;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -16,7 +17,7 @@ import org.newdawn.slick.geom.Vector2f;
  *
  * @author 0199831
  */
-public class Animacoes {
+public class Animacoes implements Animable {
 
     /** Animação atual */
     private int current;
@@ -32,6 +33,16 @@ public class Animacoes {
      */
     public Animacoes(List<Animacao> animacoes) {
         this.animacoes = animacoes;
+    }
+
+    /**
+     * Inicializa animação
+     *
+     * @param direction
+     */
+    public void init(AnimationEnum direction) {
+        setCurrent(AnimationEnum.LEFT);
+        stop();
     }
 
     /**
@@ -61,7 +72,7 @@ public class Animacoes {
      * @param container Container do jogo
      * @throws SlickException Problema no carregamento dos objetos na API
      */
-//    @Override
+    @Override
     public void load(GameContainer container) throws SlickException {
         for (Animacao a : animacoes) {
             a.load(container);
@@ -75,6 +86,7 @@ public class Animacoes {
      * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
+    @Override
     public void update(GameContainer container, int delta) throws SlickException {
         getCurrent().update(container, delta);
     }
@@ -86,6 +98,7 @@ public class Animacoes {
      * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
+    @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
         getCurrent().render(container, g);
     }
@@ -109,11 +122,17 @@ public class Animacoes {
         getCurrent().move(pos);
     }
 
+    /**
+     * Inicia movimentos da animação
+     */
     public void start() {
         getCurrent().getAnimation().setAutoUpdate(true);
         running = true;
     }
 
+    /**
+     * Pausa movimentação da animação
+     */
     public void stop() {
         running = false;
         getCurrent().getAnimation().setAutoUpdate(false);

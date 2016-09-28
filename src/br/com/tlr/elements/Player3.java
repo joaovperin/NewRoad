@@ -28,10 +28,6 @@ public class Player3 extends Character implements InputProviderListener {
     private InputProvider provider;
 
     // https://github.com/dmitrykolesnikovich/featurea/tree/master/engines/platformer
-    /** The message to be displayed */
-    private final String controlMessage = "HIT";
-    boolean atk = false;
-
     Shape shape = new Circle(0f, 0f, 25f);
     Vector2f mPos = new Vector2f();
 
@@ -60,65 +56,48 @@ public class Player3 extends Character implements InputProviderListener {
         // Instancia InputProvider do Player
         provider = new InputProvider(container.getInput());
         provider.addListener(this);
-        // Direções
+        // Amarra comandos no gerenciador InputProvider
         comandos.bindComandos(provider);
-
         // Cria e carrega as animações
         animacoes = AnimationFactory.create(animationName, 4, AnimationEnum.getAll());
         animacoes.load(container);
         // Inicializa o character movendo virado para a esquerda
-        animacoes.setCurrent(AnimationEnum.LEFT);
-
-        animacoes.stop();
+        animacoes.init(AnimationEnum.LEFT);
     }
 
     /**
      * Atualiza os frames do jogo
      *
-     * @param container Container do jogo
+     * @param gc Container do jogo
      * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
-        animacoes.stop();
+    public void update(GameContainer gc, int delta) throws SlickException {
         // Entradas do jogo
-        Input input = container.getInput();
-
+        Input input = gc.getInput();
         mPos.x = input.getAbsoluteMouseX();
         mPos.y = input.getAbsoluteMouseY();
-
+        animacoes.stop();
 //        System.out.println("Key: " + AnimationEnum.getByName(Keyboard.getKeyName(Keyboard.getEventKey())).test()); // USAR ISSO PRA DETECTAR O MOVIMENTO
 //        AnimationEnum.getByName(Keyboard.getKeyName(Keyboard.getEventKey())).test();
         // Ações de movimentação - DOWN
-        if (comandos.isDownCmd()) {
-            if (getY() >= movableArea[1][1]) {
-                return;
-            }
+        if (comandos.isDownCmd() && comandos.canMoveDown(getY(), movableArea[1][1])) {
             animacoes.setCurrent(AnimationEnum.DOWN);
             addY(delta * 0.1f);
         }
         // Ações de movimentação - LEFT
-        if (comandos.isLeftCmd()) {
-            if (getX() <= movableArea[0][0]) {
-                return;
-            }
+        if (comandos.isLeftCmd() && comandos.canMoveLeft(getX(), movableArea[0][0])) {
             animacoes.setCurrent(AnimationEnum.LEFT);
             subX(delta * 0.1f);
         }
         // Ações de movimentação - RIGHT
-        if (comandos.isRightCmd()) {
-            if (getX() >= movableArea[0][1]) {
-                return;
-            }
+        if (comandos.isRightCmd() && comandos.canMoveRight(getX(), movableArea[0][1])) {
             animacoes.setCurrent(AnimationEnum.RIGHT);
             addX(delta * 0.1f);
         }
         // Ações de movimentação - UP
-        if (comandos.isUpCmd()) {
-            if (getY() <= movableArea[1][0]) {
-                return;
-            }
+        if (comandos.isUpCmd() && comandos.canMoveUp(getY(), movableArea[1][0])) {
             animacoes.setCurrent(AnimationEnum.UP);
             subY(delta * 0.1f);
         }
@@ -128,21 +107,25 @@ public class Player3 extends Character implements InputProviderListener {
     /**
      * Renderiza as imagens do jogo
      *
-     * @param container Container do jogo
+     * @param gc Container do jogo
      * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
     @Override
-    public void render(GameContainer container, Graphics g) throws SlickException {
-        if (atk) {
-            g.drawString(controlMessage, mPos.x, mPos.y);
-//            shape.setLocation(mPos);
+    public void render(GameContainer gc, Graphics g) throws SlickException {
+        // Entradas do jogo
+        Input input = gc.getInput();
+        mPos.x = input.getAbsoluteMouseX();
+        mPos.y = input.getAbsoluteMouseY();
+        // Se deve atacar
+        if (comandos.isAtkCmd()) {
             shape.setCenterX(mPos.x);
             shape.setCenterY(mPos.y);
             g.fill(shape);
         }
+        // Move e renderiza as animações
         animacoes.move(pos);
-        animacoes.render(container, g);
+        animacoes.render(gc, g);
     }
 
     /**
