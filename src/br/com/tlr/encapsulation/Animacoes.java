@@ -25,13 +25,19 @@ public class Animacoes implements Animable {
     private final List<Animacao> animacoes;
     /** Indica se está se movendo */
     private boolean running;
+    private final int width;
+    private final int height;
 
     /**
      * Construtor que recebe uma lista de animações
      *
      * @param animacoes
+     * @param width
+     * @param height
      */
-    public Animacoes(List<Animacao> animacoes) {
+    public Animacoes(List<Animacao> animacoes, int width, int height) {
+        this.width = width;
+        this.height = height;
         this.animacoes = animacoes;
     }
 
@@ -146,6 +152,14 @@ public class Animacoes implements Animable {
      */
     private Animacao getCurrent() {
         return animacoes.get(current);
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
 }

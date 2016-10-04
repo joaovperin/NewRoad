@@ -39,6 +39,7 @@ public class Shot extends Attack {
      * @param lifeSpan
      */
     public Shot(String animationName, int lifeSpan) {
+        super(32, 24);
         this.animationName = animationName;
         this.lifeSpan = lifeSpan;
         this.isAlive = false;

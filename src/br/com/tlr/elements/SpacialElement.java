@@ -4,6 +4,8 @@
  */
 package br.com.tlr.elements;
 
+import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -13,8 +15,21 @@ public abstract class SpacialElement {
 
     /** Posição atual do objeto */
     protected Vector2f pos = new Vector2f();
-    protected int height;
-    protected int width;
+    /** Altura */
+    protected final int height;
+    /** Largura */
+    protected final int width;
+
+    /**
+     * Construtor padrão que recebe a altura e largura do objeto para inicializar
+     *
+     * @param width
+     * @param height
+     */
+    public SpacialElement(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
     /**
      * Retorna a posição atual no eixo X
@@ -61,12 +76,8 @@ public abstract class SpacialElement {
         return height;
     }
 
-    protected void setWidth(int width){
-        this.width = width;
+    protected Shape getBounding(){
+        return new Rectangle(getX(), getY(), getWidth(), getHeight());
     }
-    protected void setHeight(int height){
-        this.height = height;
-    }
-
 
 }

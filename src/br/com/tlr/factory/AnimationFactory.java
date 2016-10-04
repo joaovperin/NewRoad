@@ -27,20 +27,22 @@ public class AnimationFactory extends AbstractFactory {
      *
      * @param name Nome da folha de estilos
      * @param num Número de frames por animação
+     * @param width Largura da animação
+     * @param height Altura da animação
      * @param args Animações a criar
      * @return ArrayList<>
      * @throws SlickException Problema ao criar animações
      */
-    public static Animacoes create(String name, int num, AnimationEnum... args) throws SlickException {
+    public static Animacoes create(String name, int num, int width, int height, AnimationEnum... args) throws SlickException {
         // Carrega sprites para as animações de movimentos
-        SpriteSheet sheet = new SpriteSheet(SPRITES_DIR + name, 32, 48);
+        SpriteSheet sheet = new SpriteSheet(SPRITES_DIR + name, width, height);
         List<Animacao> list = new ArrayList<>();
         // Percorre argumentos criando animações
         for (AnimationEnum arg : args) {
             list.add(new Animacao(arg, num, sheet));
         }
         // Retorna lista criada
-        return new Animacoes(list);
+        return new Animacoes(list, width, height);
     }
 
 }

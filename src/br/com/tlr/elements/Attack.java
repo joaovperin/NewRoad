@@ -9,4 +9,8 @@ package br.com.tlr.elements;
  */
 public abstract class Attack extends Movable implements Animable {
 
+    public Attack(int height, int width) {
+        super(height, width);
+    }
+
 }

@@ -28,7 +28,7 @@ public class Animacao implements Animable {
     private final SpriteSheet sheet;
     /** Último quadrado no eixo X */
     private final int lastX;
-
+    /** Interface com método de movimentação */
     public Move move;
 
     /** Animação do Slick2D */

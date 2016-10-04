@@ -42,7 +42,7 @@ public class Player2 extends Character {
     public void load(GameContainer container) throws SlickException {
         try {
             // Cria e carrega as animações
-            animacoes = AnimationFactory.create(animationName, 4, AnimationEnum.getAll());
+            animacoes = AnimationFactory.create(animationName, 4, 32, 48, AnimationEnum.getAll());
             animacoes.load(container);
             // Inicializa o character movendo virado para a direita
             animacoes.setCurrent(AnimationEnum.LEFT);

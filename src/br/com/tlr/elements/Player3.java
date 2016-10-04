@@ -15,8 +15,10 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.GameState;
 
 /**
  *
@@ -27,6 +29,8 @@ public class Player3 extends Character implements InputProviderListener {
     /** The input provider abstracting input */
     private InputProvider provider;
 
+    // LER ISSO!
+    //http://zetcode.com/tutorials/javagamestutorial/collision/
     // https://github.com/dmitrykolesnikovich/featurea/tree/master/engines/platformer
     Shape shape = new Circle(0f, 0f, 25f);
     Vector2f mPos = new Vector2f();
@@ -60,7 +64,7 @@ public class Player3 extends Character implements InputProviderListener {
         // Amarra comandos no gerenciador InputProvider
         comandos.bindComandos(provider);
         // Cria e carrega as animações
-        animacoes = AnimationFactory.create(animationName, 4, AnimationEnum.getAll());
+        animacoes = AnimationFactory.create(animationName, 4, 32, 48, AnimationEnum.getAll());
         animacoes.load(container);
         // Inicializa o character movendo virado para a esquerda
         animacoes.init(AnimationEnum.LEFT);
@@ -80,9 +84,15 @@ public class Player3 extends Character implements InputProviderListener {
         mPos.x = input.getAbsoluteMouseX();
         mPos.y = input.getAbsoluteMouseY();
 
-        if (this.isCollidingWith(tst)){
-            System.out.println("Collide!");
-        } else System.out.println();
+//        if (comandos.isAtkCmd() &&  tst.getTst().intersects(shape)){
+//            System.out.println("ACERTOU O ATK!!");
+//        }
+
+//        else System.out.println("");
+        if (comandos.isAtkCmd() &&  shape.intersects(getBounding())){
+            System.out.println("ACERTOU O ATK!!");
+            br.com.tlr.game.states.LevelGrass.EXIT_GAME = true;
+        } else System.out.println("");
 
         animacoes.stop();
 //        System.out.println("Key: " + AnimationEnum.getByName(Keyboard.getKeyName(Keyboard.getEventKey())).test()); // USAR ISSO PRA DETECTAR O MOVIMENTO
@@ -129,6 +139,7 @@ public class Player3 extends Character implements InputProviderListener {
             shape.setCenterY(mPos.y);
             g.fill(shape);
         }
+        g.draw(tst.getTst());
         g.fill(tst.getTst());
         // Move e renderiza as animações
         animacoes.move(pos);
@@ -164,31 +175,55 @@ public class Player3 extends Character implements InputProviderListener {
     @Override
     public boolean isCollidingWith(SpacialElement obj) {
 
+        // https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169   SAT
 //        http://blog.sklambert.com/html5-canvas-game-2d-collision-detection/
 //        if (object1.x < object2.x + object2.width  && object1.x + object1.width  > object2.x &&
 //		object1.y < object2.y + object2.height && object1.y + object1.height > object2.y) {
 // The objects are touching
+
+        return getBounding().intersects(obj.getBounding());
 //}
+//        boolean isHitLeft = (obj.getX() + this.getWidth()/2) >= (this.getX() + this.getWidth()/2);
+//        boolean isHitRight = (obj.getX() - obj.getWidth()/2) <= (this.getX() - this.getWidth()/2);
+//
+//        boolean isHitUp = (obj.getY() + obj.getHeight()/2) >= (this.getY() + this.getHeight()/2);
+//        boolean isHitDown = (obj.getY() - obj.getHeight()/2) <= (this.getY() - this.getHeight()/2);
+//
+//        isHitDown = true;
+//        isHitUp = true;
+//        return isHitLeft && isHitRight && isHitUp && isHitDown;
+//        return (this.getX() - obj.getX() - 0.5 * this.getWidth() - 0.5* obj.getWidth()) < 0;
 
         // Verifica se está ocorrendo colisão
-        return getX() < obj.getX() + obj.getWidth() && getX() + getWidth() > obj.getX() &&
-                getY() < obj.getY() + obj.getHeight() && getY() + getHeight() > obj.getY();
+//        return (getX() < (obj.getX() + obj.getWidth())) && ((getX() + getWidth()) > obj.getX()) &&
+//                (getY() < (obj.getY() + obj.getHeight()) && (getY() + getHeight()) > obj.getY());
     }
 
     private class Borda extends Movable {
         Shape tst;
 
         public Borda() {
-            tst = new Circle(100f, 100f, 25f);
-            setX(100f);
-            setY(100f);
-            setHeight(25);
-            setWidth(25);
+            super(50, 50);
+            tst = new Rectangle(100f, 100f, super.getWidth(), super.getWidth());
+            setX(tst.getX());
+            setY(tst.getY());
         }
 
         public Shape getTst(){
-//            System.out.println("X: " + getX() + " Y: " + getY());
             return tst;
+        }
+
+        public String getCoord(){
+            StringBuilder sb = new StringBuilder();
+            sb.append("Xmin: ");
+            sb.append(tst.getX() - tst.getWidth()/2);
+            sb.append("Xmax: ");
+            sb.append(tst.getX() + tst.getWidth()/2);
+            sb.append("Ymin: ");
+            sb.append(tst.getY() - tst.getHeight()/2);
+            sb.append("Ymax: ");
+            sb.append(tst.getY() + tst.getHeight()/2);
+            return sb.toString();
         }
 
     }

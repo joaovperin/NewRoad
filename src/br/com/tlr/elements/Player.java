@@ -76,7 +76,7 @@ public class Player extends Character {
             SpriteSheet sheet = new SpriteSheet(SPRITES_DIR + animationName, 32, 48);
 
             // Cria animações
-            animacoes = AnimationFactory.create(animationName, 4, AnimationEnum.getAll());
+            animacoes = AnimationFactory.create(animationName, 4, 32, 48, AnimationEnum.getAll());
             animacoes.load(container);
 
             // Carrega frames de animação do character da spritesheet

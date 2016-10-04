@@ -5,14 +5,22 @@
  */
 package br.com.tlr.elements;
 
-import org.newdawn.slick.geom.Vector2f;
-
 /**
  * * Classe abstrata para todos os itens que podem se mover
  *
  * @author 0199831
  */
 public abstract class Movable extends SpacialElement {
+
+    /**
+     * Construtor padrão que recebe a altura e largura do objeto para inicializar
+     *
+     * @param width
+     * @param height
+     */
+    public Movable(int width, int height) {
+        super(width, height);
+    }
 
     /**
      * Incrementa a posição no eixo X

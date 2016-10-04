@@ -5,11 +5,15 @@
 package br.com.tlr.game.states;
 
 import br.com.tlr.elements.Player3;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.Transition;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
@@ -25,6 +29,9 @@ public class LevelGrass extends BasicGameState {
 //    private Player2 player2;
     /** Jogador 3 */
     private Player3 player3;
+    /** Transições de entrada e saída do estágio */
+    Transition trIn, trOut;
+    public static boolean EXIT_GAME;  // tornar singleton
 
     @Override
     public int getID() {
@@ -40,6 +47,7 @@ public class LevelGrass extends BasicGameState {
      */
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        EXIT_GAME = false;
         // Carrega o mapa em memória
         grassMap = new TiledMap("data/maps/desert.tmx");
         // Área movível do jogador
@@ -47,6 +55,12 @@ public class LevelGrass extends BasicGameState {
             { 0, grassMap.getWidth() * 32.0f }, // X axis
             { 0, grassMap.getHeight() * 28.7f } // Y axis
         };
+        // Cria transições para trocar de State
+        trIn = new FadeInTransition(Color.yellow);
+        trOut = new FadeOutTransition(Color.red);
+        trIn.init(this, game.getState(StatesEnum.GRASS_MAP.getId()));
+        trOut.init(this, game.getState(StatesEnum.GRASS_MAP.getId()));
+
         // Instancia e carrega sprites e animações do jogador 3
         player3 = new Player3("player.png", 4, movableArea);
         player3.load(container);
@@ -66,6 +80,9 @@ public class LevelGrass extends BasicGameState {
 //        player.update(container, delta);
 //        player2.update(container, delta);
         player3.update(container, delta);
+        if (EXIT_GAME){
+            game.enterState(StatesEnum.GAME_OVER.getId(), trOut, trIn);
+        }
     }
 
     /**

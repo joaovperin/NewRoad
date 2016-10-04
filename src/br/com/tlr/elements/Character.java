@@ -50,6 +50,7 @@ public abstract class Character extends Movable implements Animable {
      * @param movableArea Dimensões máximas do jogador
      */
     public Character(String animationName, int numFrames, float[][] movableArea) {
+        super(32, 48);
         this.animationName = animationName;
         this.numFrames = numFrames;
         this.movableArea = movableArea;
