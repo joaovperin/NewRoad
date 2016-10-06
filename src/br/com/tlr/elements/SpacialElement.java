@@ -4,7 +4,7 @@
  */
 package br.com.tlr.elements;
 
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -76,8 +76,13 @@ public abstract class SpacialElement {
         return height;
     }
 
+    /**
+     * Retorna um retângulo arredondado do tamanho do objeto (para checar colisões)
+     *
+     * @return Shape
+     */
     protected Shape getBounding(){
-        return new Rectangle(getX(), getY(), getWidth(), getHeight());
+        return new RoundedRectangle(getX(), getY(), getWidth(), getHeight(), 30f);
     }
 
 }

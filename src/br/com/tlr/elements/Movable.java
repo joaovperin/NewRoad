@@ -76,4 +76,14 @@ public abstract class Movable extends SpacialElement {
         pos.y = y;
     }
 
+    /**
+     * Método responsável por detectar colisões
+     *
+     * @param obj
+     * @return
+     */
+    public boolean isCollidingWith(SpacialElement obj){
+        return true;
+    }
+
 }

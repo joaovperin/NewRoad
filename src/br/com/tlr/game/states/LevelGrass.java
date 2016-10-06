@@ -23,10 +23,6 @@ public class LevelGrass extends BasicGameState {
 
     /** Mapa principal do jogo -> Grama */
     private TiledMap grassMap;
-    /** Jogador */
-//    private Player player;
-    /** Jogador 2 */
-//    private Player2 player2;
     /** Jogador 3 */
     private Player3 player3;
     /** Transições de entrada e saída do estágio */
@@ -77,9 +73,8 @@ public class LevelGrass extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         // Atualiza os jogadores
-//        player.update(container, delta);
-//        player2.update(container, delta);
         player3.update(container, delta);
+        // Se deve encerrar o jogo
         if (EXIT_GAME){
             game.enterState(StatesEnum.GAME_OVER.getId(), trOut, trIn);
         }
@@ -97,10 +92,7 @@ public class LevelGrass extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         // Renderiza o mapa e os jogadores
         grassMap.render(0, 0);
-//        player.render(container, g);
-//        player2.render(container, g);
         player3.render(container, g);
-
     }
 
 }
