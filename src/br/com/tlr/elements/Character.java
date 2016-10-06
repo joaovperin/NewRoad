@@ -6,6 +6,8 @@
 package br.com.tlr.elements;
 
 import br.com.tlr.encapsulation.Animacoes;
+import org.newdawn.slick.geom.RoundedRectangle;
+import org.newdawn.slick.geom.Shape;
 
 /**
  * Classe responsável pela criação de personagens
@@ -32,10 +34,19 @@ public abstract class Character extends Movable implements Animable {
      * @param movableArea Dimensões máximas do jogador
      */
     public Character(String animationName, int numFrames, float[][] movableArea) {
-        super(32, 48);
+        super(32f, 48f);
         this.animationName = animationName;
         this.numFrames = numFrames;
         this.movableArea = movableArea;
+    }
+
+      /**
+     * Retorna um retângulo arredondado do tamanho do objeto (para checar colisões)
+     *
+     * @return Shape
+     */
+    public Shape getPisando(){
+        return new RoundedRectangle(getX()+8, getY() +40, getWidth() - 14, getHeight()/6, 30f);
     }
 
 }

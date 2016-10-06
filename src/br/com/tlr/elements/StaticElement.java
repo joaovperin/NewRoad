@@ -19,7 +19,7 @@ public abstract class StaticElement extends SpacialElement {
      * @param width
      * @param height
      */
-    public StaticElement(int width, int height) {
+    public StaticElement(float width, float height) {
         super(width, height);
         pos.x = 0f;
         pos.y = 0f;
@@ -32,7 +32,7 @@ public abstract class StaticElement extends SpacialElement {
      * @param height
      * @param pos
      */
-    public StaticElement(int width, int height, Vector2f pos) {
+    public StaticElement(float width, float height, Vector2f pos) {
         super(width, height);
         this.pos = pos;
     }
@@ -45,7 +45,7 @@ public abstract class StaticElement extends SpacialElement {
      * @param x
      * @param y
      */
-    public StaticElement(int width, int height, float x, float y) {
+    public StaticElement(float x, float y, float width, float height) {
         super(width, height);
         pos.x = x;
         pos.y = y;

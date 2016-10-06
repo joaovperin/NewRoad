@@ -39,7 +39,7 @@ public class Player3 extends Character implements InputProviderListener {
 //        http://blog.sklambert.com/html5-canvas-game-2d-collision-detection/
     Shape shape = new Circle(0f, 0f, 25f);
     Vector2f mPos = new Vector2f();
-    Borda tst = new Borda();
+    Buraco hole = new Buraco();
 
     /** Objeto responsável pelo gerenciamento de comandos */
     Comandos comandos = new Comandos();
@@ -89,20 +89,20 @@ public class Player3 extends Character implements InputProviderListener {
         mPos.x = input.getAbsoluteMouseX();
         mPos.y = input.getAbsoluteMouseY();
 
-        if (collisionManager.isColliding(tst.getBounding(), getBounding())){
+        if (collisionManager.isColliding(hole.getBounding(), getPisando())){
             System.out.println("Caiu no buraco :/");
-        }
+            br.com.tlr.game.states.LevelGrass.EXIT_GAME = true;
+        } else if (comandos.isAtkCmd() &&  collisionManager.isColliding(shape, getBounding())){
+            System.out.println("ACERTOU O ATK!!");
+            // br.com.tlr.game.states.LevelGrass.EXIT_GAME = true;
+        } else System.out.println("---");
 
-//        if (comandos.isAtkCmd() &&  tst.getTst().intersects(shape)){
+//        if (comandos.isAtkCmd() &&  hole.getTst().intersects(shape)){
 //            System.out.println("ACERTOU O ATK!!");
 //        }  else System.out.println("");
-//        if (comandos.isAtkCmd() &&  collisionManager.isColliding(getBounding(), tst.getBounding())){
+//        if (comandos.isAtkCmd() &&  collisionManager.isColliding(getBounding(), hole.getBounding())){
 
-        if (comandos.isAtkCmd() &&  collisionManager.isColliding(shape, getBounding())){
-//        if (comandos.isAtkCmd() &&  shape.intersects(getBounding())){
-            System.out.println("ACERTOU O ATK!!");
-//            br.com.tlr.game.states.LevelGrass.EXIT_GAME = true;
-        } else System.out.println("");
+
 
         animacoes.stop();
 //        System.out.println("Key: " + AnimationEnum.getByName(Keyboard.getKeyName(Keyboard.getEventKey())).test()); // USAR ISSO PRA DETECTAR O MOVIMENTO
@@ -148,8 +148,9 @@ public class Player3 extends Character implements InputProviderListener {
             shape.setCenterY(mPos.y);
             g.fill(shape);
         }
-        g.draw(tst.getShape());
-        g.fill(tst.getShape());
+        g.draw(hole.getShape());
+        g.fill(hole.getShape());
+        g.draw(getPisando());
         g.draw(getBounding());
         g.draw(shape);
         // Move e renderiza as animações
@@ -180,13 +181,13 @@ public class Player3 extends Character implements InputProviderListener {
     /**
      * Borda do mouse
      */
-    private class Borda extends StaticElement {
+    private class Buraco extends StaticElement {
 
         private final Shape shape;
 
-        public Borda() {
-            super(50, 50, 100f, 100f);
-            shape = new Rectangle(100f, 100f, getWidth(), getWidth());
+        public Buraco() {
+            super(175f, 175f, 100f, 100f);
+            shape = new Rectangle(getX(), getY(), getWidth(), getWidth());
         }
 
         public Shape getShape(){

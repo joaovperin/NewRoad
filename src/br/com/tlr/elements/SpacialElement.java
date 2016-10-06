@@ -16,9 +16,9 @@ public abstract class SpacialElement {
     /** Posição atual do objeto */
     protected Vector2f pos = new Vector2f();
     /** Altura */
-    protected final int height;
+    protected final float height;
     /** Largura */
-    protected final int width;
+    protected final float width;
 
     /**
      * Construtor padrão que recebe a altura e largura do objeto para inicializar
@@ -26,7 +26,7 @@ public abstract class SpacialElement {
      * @param width
      * @param height
      */
-    public SpacialElement(int width, int height) {
+    public SpacialElement(float width, float height) {
         this.width = width;
         this.height = height;
     }
@@ -63,7 +63,7 @@ public abstract class SpacialElement {
      *
      * @return int
      */
-    protected int getWidth() {
+    protected float getWidth() {
         return width;
     }
 
@@ -72,7 +72,7 @@ public abstract class SpacialElement {
      *
      * @return int
      */
-    protected int getHeight() {
+    protected float getHeight() {
         return height;
     }
 
@@ -82,7 +82,7 @@ public abstract class SpacialElement {
      * @return Shape
      */
     protected Shape getBounding(){
-        return new RoundedRectangle(getX(), getY(), getWidth(), getHeight(), 30f);
+        return new RoundedRectangle(getX(), getY(), getWidth()-2, getHeight()-1, 30f);
     }
 
 }

@@ -18,7 +18,7 @@ public abstract class Movable extends SpacialElement {
      * @param width
      * @param height
      */
-    public Movable(int width, int height) {
+    public Movable(float width, float height) {
         super(width, height);
     }
 
