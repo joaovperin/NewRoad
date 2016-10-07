@@ -19,7 +19,6 @@ import org.newdawn.slick.SlickException;
 public class LifeManager implements Animable {
 
     // IMPLEMENTAR CONTROLE DE POSIÇÃO PARA DESENHAR OS HEARTS
-
     private int numHearts;
     private final List<Heart> hearts = new ArrayList<>();
 
@@ -30,8 +29,10 @@ public class LifeManager implements Animable {
     public LifeManager(int numHearts) {
         this.numHearts = numHearts;
         // Inicializa Hearts
-        for (int x=0; x<numHearts; x++) {
-            hearts.add(new Heart());
+        int conMax = 0;
+        for (int x = 0; x < numHearts; x++) {
+            float calcX = 400 - 50*x - x*3;
+            hearts.add(new Heart(50, 50, calcX, 0));
         }
     }
 
@@ -52,21 +53,21 @@ public class LifeManager implements Animable {
 
     @Override
     public void load(GameContainer container) throws SlickException {
-        for (Heart heart : hearts){
+        for (Heart heart : hearts) {
             heart.load(container);
         }
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
-        for (Heart heart : hearts){
+        for (Heart heart : hearts) {
             heart.update(container, delta);
         }
     }
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        for (Heart heart : hearts){
+        for (Heart heart : hearts) {
             heart.render(container, g);
         }
     }
