@@ -4,25 +4,35 @@
  */
 package br.com.tlr.manager;
 
+import br.com.tlr.elements.Animable;
 import br.com.tlr.elements.Heart;
 import br.com.tlr.exception.GameOverException;
 import java.util.ArrayList;
 import java.util.List;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 /**
- * Descrição da classe.
+ * Classe responsável pelo controle de vida dos characters
  */
-public class LifeManager {
+public class LifeManager implements Animable {
+
+    // IMPLEMENTAR CONTROLE DE POSIÇÃO PARA DESENHAR OS HEARTS
 
     private int numHearts;
-    private List<Heart> hearts = new ArrayList<>();
+    private final List<Heart> hearts = new ArrayList<>();
 
     public LifeManager() {
-        numHearts = 10;
+        this(10);
     }
 
     public LifeManager(int numHearts) {
         this.numHearts = numHearts;
+        // Inicializa Hearts
+        for (int x=0; x<numHearts; x++) {
+            hearts.add(new Heart());
+        }
     }
 
     public void subHeart() throws GameOverException {
@@ -40,8 +50,25 @@ public class LifeManager {
         return numHearts;
     }
 
-    public void render(){
+    @Override
+    public void load(GameContainer container) throws SlickException {
+        for (Heart heart : hearts){
+            heart.load(container);
+        }
+    }
 
+    @Override
+    public void update(GameContainer container, int delta) throws SlickException {
+        for (Heart heart : hearts){
+            heart.update(container, delta);
+        }
+    }
+
+    @Override
+    public void render(GameContainer container, Graphics g) throws SlickException {
+        for (Heart heart : hearts){
+            heart.render(container, g);
+        }
     }
 
 }

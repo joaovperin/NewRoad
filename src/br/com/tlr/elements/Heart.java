@@ -25,7 +25,7 @@ public class Heart extends Movable implements Animable {
 
     public Heart() {
         super(32, 24);
-        animationName = "";
+        animationName = "heart.jpg";
     }
 
     public boolean isIsAlive() {
@@ -41,7 +41,7 @@ public class Heart extends Movable implements Animable {
         // Carrega sprites para as animações de movimentos
         SpriteSheet sheet = new SpriteSheet(SPRITES_DIR + animationName, 32, 24);
         // Carrega frames de animação do character da spritesheet
-        heart = new Animation(sheet, 0, 0, 3, 0, true, 100, true);
+        heart = new Animation(sheet, 0, 0, 1, 0, true, 100, true);
         isAlive = true;
     }
 

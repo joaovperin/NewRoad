@@ -73,6 +73,7 @@ public class Player3 extends Character implements InputProviderListener {
         animacoes.load(container);
         // Inicializa o character movendo virado para a esquerda
         animacoes.init(AnimationEnum.LEFT);
+        lifeManager.load(container);
     }
 
     /**
@@ -127,6 +128,7 @@ public class Player3 extends Character implements InputProviderListener {
             animacoes.setCurrent(AnimationEnum.UP);
             subY(delta * 0.1f);
         }
+        lifeManager.update(gc, delta);
     }
 
     /**
@@ -156,6 +158,7 @@ public class Player3 extends Character implements InputProviderListener {
         // Move e renderiza as animações
         animacoes.move(pos);
         animacoes.render(gc, g);
+        lifeManager.render(gc, g);
     }
 
     /**

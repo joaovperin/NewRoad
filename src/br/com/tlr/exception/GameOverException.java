@@ -5,20 +5,36 @@
 package br.com.tlr.exception;
 
 /**
- * Descrição da classe.
+ * Exception a ser utilizada para finalizar o jogo
  */
 public class GameOverException extends Throwable {
 
-    public GameOverException() {
-        super();
+    /**
+     * Construtor padrão da exception
+     *
+     * @param causa Exception que gerou o problema
+     */
+    public GameOverException(Throwable causa) {
+        super(causa);
     }
 
-    public GameOverException(Throwable e) {
-        super(e);
+    /**
+     * Construtor padrão da exception
+     *
+     * @param mensagem Mensagem do problema
+     */
+    public GameOverException(String mensagem) {
+        super(mensagem);
     }
 
-    public GameOverException(String msg) {
-        super(msg);
+    /**
+     * Construtor padrão da exception
+     *
+     * @param mensagem Mensagem do problema
+     * @param causa Exception que gerou o problema
+     */
+    public GameOverException(String mensagem, Throwable causa) {
+        super(mensagem, causa);
     }
 
 }
