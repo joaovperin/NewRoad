@@ -12,6 +12,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.command.Command;
 
 /**
  *
@@ -120,6 +121,16 @@ public class Player2 extends Character {
     @Override
     public boolean isCollidingWith(SpacialElement obj) {
         return false;
+    }
+
+    @Override
+    public void controlPressed(Command cmnd) {
+        
+    }
+
+    @Override
+    public void controlReleased(Command cmnd) {
+
     }
 
 }

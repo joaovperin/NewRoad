@@ -4,7 +4,13 @@
  */
 package br.com.tlr.game.states;
 
+import br.com.tlr.elements.Animable;
+import br.com.tlr.elements.Obstaculo;
 import br.com.tlr.elements.Player3;
+import br.com.tlr.elements.SpacialElement;
+import br.com.tlr.exception.GameOverException;
+import java.util.ArrayList;
+import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -23,11 +29,10 @@ public class LevelGrass extends BasicGameState {
 
     /** Mapa principal do jogo -> Grama */
     private TiledMap grassMap;
-    /** Jogador 3 */
-    private Player3 player3;
+
+    private final List<Animable> elements = new ArrayList<>();
     /** Transições de entrada e saída do estágio */
-    Transition trIn, trOut;
-    public static boolean EXIT_GAME;  // tornar singleton
+    private Transition trIn, trOut;
 
     @Override
     public int getID() {
@@ -43,7 +48,6 @@ public class LevelGrass extends BasicGameState {
      */
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        EXIT_GAME = false;
         // Carrega o mapa em memória
         grassMap = new TiledMap("data/maps/desert.tmx");
         // Área movível do jogador
@@ -58,8 +62,11 @@ public class LevelGrass extends BasicGameState {
         trOut.init(this, game.getState(StatesEnum.GRASS_MAP.getId()));
 
         // Instancia e carrega sprites e animações do jogador 3
-        player3 = new Player3("player.png", 4, movableArea);
-        player3.load(container);
+        elements.add(new Player3("player.png", 4, movableArea));
+        // Inicializa as entidades animáveis
+        for (Animable a : elements) {
+            a.load(container);
+        }
     }
 
     /**
@@ -72,10 +79,13 @@ public class LevelGrass extends BasicGameState {
      */
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        // Atualiza os jogadores
-        player3.update(container, delta);
-        // Se deve encerrar o jogo
-        if (EXIT_GAME){
+        try {
+            // Atualiza as entidades animáveis
+            for (Animable a : elements) {
+                a.update(container, delta);
+            }
+            // Se deve encerrar o jogo
+        } catch (GameOverException ex) {
             game.enterState(StatesEnum.GAME_OVER.getId(), trOut, trIn);
         }
     }
@@ -90,9 +100,12 @@ public class LevelGrass extends BasicGameState {
      */
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        // Renderiza o mapa e os jogadores
+        // Renderiza o mapa
         grassMap.render(0, 0);
-        player3.render(container, g);
+        // Renderiza as entidades animáveis
+        for (Animable a : elements) {
+            a.render(container, g);
+        }
     }
 
 }

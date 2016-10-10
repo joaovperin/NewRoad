@@ -19,25 +19,22 @@ public class Heart extends Movable implements Animable {
     /** Heart */
     private Animation heart;
     /** Nome da animaçao */
-    private final String animationName;
+    private final String animationName = "oie_transparent.png";;
     /** Direção de movimentação */
     private boolean isAlive;
 
     public Heart() {
         super(50, 50);
-        animationName = "t_heart.png";
     }
 
     public Heart(int wid, int hei) {
         super(wid, hei);
-        animationName = "t_heart.png";
     }
 
     public Heart(float wid, float hei, float x, float y) {
         super(wid, hei);
         setX(x);
         setY(y);
-        animationName = "t_heart.png";
     }
 
     public boolean isIsAlive() {

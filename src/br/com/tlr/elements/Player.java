@@ -15,6 +15,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.command.Command;
 
 /**
  * PLAYER - primeira versão estrutural
@@ -198,6 +199,16 @@ public class Player extends Character {
     @Override
     public boolean isCollidingWith(SpacialElement obj) {
         return false;
+    }
+
+    @Override
+    public void controlPressed(Command cmnd) {
+        
+    }
+
+    @Override
+    public void controlReleased(Command cmnd) {
+
     }
 
 }

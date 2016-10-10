@@ -21,6 +21,8 @@ public class LifeManager implements Animable {
     // IMPLEMENTAR CONTROLE DE POSIÇÃO PARA DESENHAR OS HEARTS
     private int numHearts;
     private final List<Heart> hearts = new ArrayList<>();
+    /** UTILIZAR ISSO PRA CONTROLE DE INVENCIBLE TIME AFTER HIT */
+    private final TimeManager timeManager = new TimeManager();
 
     public LifeManager() {
         this(10);
@@ -31,26 +33,52 @@ public class LifeManager implements Animable {
         // Inicializa Hearts
         int conMax = 0;
         for (int x = 0; x < numHearts; x++) {
-            float calcX = 400 - 50*x - x*3;
+            float calcX = 800 - 25*x - x*3;
             hearts.add(new Heart(50, 50, calcX, 0));
         }
+        timeManager.start(300);
     }
 
-    public void subHeart() throws GameOverException {
-        subHearts(1);
+    public void subHeart(String msg) throws GameOverException {
+        subHearts(1, msg);
     }
 
-    public void subHearts(int numHearts) throws GameOverException {
-        this.numHearts -= numHearts;
-        if (numHearts <= 0) {
+    /**
+     * Subtrai um determinado número de corações
+     *
+     * @param dmg
+     * @param msg
+     * @throws GameOverException
+     */
+    public void subHearts(int dmg, String msg) throws GameOverException {
+        // Se já perdeu vida
+        if (timeManager.isRunning()) {
+            return;
+        }
+        System.out.println(msg);
+        new Thread(timeManager).start();
+        this.numHearts -= dmg;
+        hearts.remove(numHearts);
+        if (numHearts == 1) {
             throw new GameOverException("Você morreu :D");
         }
     }
 
+    /**
+     * Retorna o número de hearts
+     *
+     * @return int
+     */
     public int getNumHearts() {
         return numHearts;
     }
 
+    /**
+     * Carrega os hearts
+     *
+     * @param container
+     * @throws SlickException
+     */
     @Override
     public void load(GameContainer container) throws SlickException {
         for (Heart heart : hearts) {
@@ -58,6 +86,13 @@ public class LifeManager implements Animable {
         }
     }
 
+    /**
+     * Atualiza os hearts
+     *
+     * @param container
+     * @param delta
+     * @throws SlickException
+     */
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
         for (Heart heart : hearts) {
@@ -65,6 +100,13 @@ public class LifeManager implements Animable {
         }
     }
 
+    /**
+     * Renderiza os hearts
+     *
+     * @param container
+     * @param g
+     * @throws SlickException
+     */
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
         for (Heart heart : hearts) {
