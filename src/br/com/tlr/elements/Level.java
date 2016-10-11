@@ -5,7 +5,6 @@
  */
 package br.com.tlr.elements;
 
-import OLD_PACKAGES.GameOverException;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -29,7 +28,7 @@ public class Level implements Animable {
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException, GameOverException {
+    public void update(GameContainer container, int delta) throws SlickException {
         
     }
 

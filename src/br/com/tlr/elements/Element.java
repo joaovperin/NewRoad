@@ -5,7 +5,6 @@
  */
 package br.com.tlr.elements;
 
-import OLD_PACKAGES.GameOverException;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -29,9 +28,8 @@ public abstract class Element {
      * @param container Container do jogo
      * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
-     * @throws OLD_PACKAGES.GameOverException
      */
-    public abstract void update(GameContainer container, int delta) throws SlickException, GameOverException;
+    public abstract void update(GameContainer container, int delta) throws SlickException;
 
     /**
      * Renderiza as imagens do jogo

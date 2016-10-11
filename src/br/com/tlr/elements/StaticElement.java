@@ -5,7 +5,6 @@
  */
 package br.com.tlr.elements;
 
-import OLD_PACKAGES.GameOverException;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -22,7 +21,7 @@ public class StaticElement extends Element  {
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException, GameOverException {
+    public void update(GameContainer container, int delta) throws SlickException {
         
     }
 
