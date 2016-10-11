@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.tlr.factory;
+package br.com.tlr.elements;
 
 /**
  *
  * @author 0199831
  */
-public abstract class AbstractFactory {
+public class Animacoes {
     
 }

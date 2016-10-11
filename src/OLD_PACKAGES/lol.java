@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.tlr.game.states;
+package OLD_PACKAGES;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;

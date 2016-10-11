@@ -108,8 +108,4 @@ public enum AnimationEnum {
         return null;
     }
 
-    public void test() {
-        System.out.println("funfou :D ");
-    }
-
 }

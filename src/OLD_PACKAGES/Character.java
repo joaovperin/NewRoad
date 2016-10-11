@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.tlr.elements;
+package OLD_PACKAGES;
 
 import br.com.tlr.encapsulation.Animacoes;
-import br.com.tlr.exception.GameOverException;
-import br.com.tlr.manager.LifeManager;
+import OLD_PACKAGES.GameOverException;
+import br.com.tlr.elements.Animable;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -25,19 +26,29 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public abstract class Character extends Movable implements Animable, InputProviderListener {
 
-    /** Nome da animaçao */
+    /**
+     * Nome da animaçao
+     */
     protected final String animationName;
-    /** Quadro máximo que os players podem se mover */
+    /**
+     * Quadro máximo que os players podem se mover
+     */
     protected final float[][] movableArea;
-    /** Número de quadros por animação do personagem */
+    /**
+     * Número de quadros por animação do personagem
+     */
     protected final int numFrames;
 
     // Array de animações (Reestruturar para ser possível de tornar FINAL)
     protected Animacoes animacoes;
-    /** The input provider abstracting input */
+    /**
+     * The input provider abstracting input
+     */
     protected InputProvider provider;
     protected final LifeManager lifeManager = new LifeManager();
-    /** Objeto responsável pelo gerenciamento de comandos */
+    /**
+     * Objeto responsável pelo gerenciamento de comandos
+     */
     protected Comandos comandos = new Comandos();
     protected Shape shape = new Circle(0f, 0f, 25f);
     protected Vector2f mPos = new Vector2f();
@@ -49,8 +60,8 @@ public abstract class Character extends Movable implements Animable, InputProvid
      * @param numFrames Número de frames por sprite
      * @param movableArea Dimensões máximas do jogador
      */
-    public Character(String animationName, int numFrames, float[][] movableArea) {
-        super(32f, 48f);
+    public Character(String animationName, int numFrames, float[][] movableArea, CollisionManager collisionManager) {
+        super(32f, 48f, collisionManager);
         this.animationName = animationName;
         this.numFrames = numFrames;
         this.movableArea = movableArea;
@@ -79,7 +90,7 @@ public abstract class Character extends Movable implements Animable, InputProvid
      * @param gc Container do jogo
      * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
-     * @throws br.com.tlr.exception.GameOverException
+     * @throws OLD_PACKAGES.GameOverException
      */
     @Override
     public void update(GameContainer gc, int delta) throws SlickException, GameOverException {
@@ -87,10 +98,16 @@ public abstract class Character extends Movable implements Animable, InputProvid
         Input input = gc.getInput();
         mPos.x = input.getAbsoluteMouseX();
         mPos.y = input.getAbsoluteMouseY();
+        
+    }
+
+    public boolean isBeingHurt() {
+        return lifeManager.isBeingHurt();
     }
 
     /**
-     * Retorna um retângulo arredondado do tamanho do objeto (para checar colisões)
+     * Retorna um retângulo arredondado do tamanho do objeto (para checar
+     * colisões)
      *
      * @return Shape
      */
@@ -98,12 +115,25 @@ public abstract class Character extends Movable implements Animable, InputProvid
         return new RoundedRectangle(getX() + 8, getY() + 40, getWidth() - 14, getHeight() / 6, 30f);
     }
 
+    public void hurt(SpacialElement cause) throws GameOverException {
+        hurt("Tomou dano de: " + cause.toString());
+    }
+
     public void hurt(String msg) throws GameOverException {
-        lifeManager.subHeart(msg);
+        hurt(1, msg);
     }
 
     public void hurt(int damage, String msg) throws GameOverException {
+        if (isBeingHurt()) return;
         lifeManager.subHearts(damage, msg);
+        setX(15f);
+        setY(15f);
+        animacoes.setColor(Color.yellow);
+    }
+    
+    @Override
+    public String toString(){
+        return "Character";
     }
 
 }

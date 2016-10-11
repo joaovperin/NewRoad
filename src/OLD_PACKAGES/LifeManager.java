@@ -2,11 +2,11 @@
  * TestLonelyRoad
  * CopyRight Rech Informática Ltda. Todos os direitos reservados.
  */
-package br.com.tlr.manager;
+package OLD_PACKAGES;
 
 import br.com.tlr.elements.Animable;
-import br.com.tlr.elements.Heart;
-import br.com.tlr.exception.GameOverException;
+import OLD_PACKAGES.Heart;
+import OLD_PACKAGES.GameOverException;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
@@ -36,7 +36,7 @@ public class LifeManager implements Animable {
             float calcX = 800 - 25*x - x*3;
             hearts.add(new Heart(50, 50, calcX, 0));
         }
-        timeManager.start(300);
+        timeManager.start(3000);
     }
 
     public void subHeart(String msg) throws GameOverException {
@@ -71,6 +71,10 @@ public class LifeManager implements Animable {
      */
     public int getNumHearts() {
         return numHearts;
+    }
+    
+    public boolean isBeingHurt(){
+        return timeManager.isRunning();
     }
 
     /**

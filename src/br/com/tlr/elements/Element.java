@@ -11,19 +11,17 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 /**
- * Interface para todos os itens animáveis
  *
  * @author 0199831
  */
-public interface Animable {
-
+public abstract class Element {
     /**
      * Carrega as imagens e as animações
      *
      * @param container Container do jogo
      * @throws SlickException Problema no carregamento dos objetos na API
      */
-    public void load(GameContainer container) throws SlickException;
+    public abstract void load(GameContainer container) throws SlickException;
 
     /**
      * Atualiza os frames do jogo
@@ -33,7 +31,7 @@ public interface Animable {
      * @throws SlickException Problema ao atualizar quadros
      * @throws OLD_PACKAGES.GameOverException
      */
-    public void update(GameContainer container, int delta) throws SlickException, GameOverException;
+    public abstract void update(GameContainer container, int delta) throws SlickException, GameOverException;
 
     /**
      * Renderiza as imagens do jogo
@@ -42,6 +40,5 @@ public interface Animable {
      * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
-    public void render(GameContainer container, Graphics g) throws SlickException;
-
+    public abstract void render(GameContainer container, Graphics g) throws SlickException;
 }

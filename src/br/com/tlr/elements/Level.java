@@ -6,6 +6,7 @@
 package br.com.tlr.elements;
 
 import OLD_PACKAGES.GameOverException;
+import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -14,9 +15,13 @@ import org.newdawn.slick.SlickException;
  *
  * @author 0199831
  */
-public class Player implements Animable {
+public class Level implements Animable {
     
-    Animacoes animacoes;
+    Mapa mapa;
+    Player player;
+    Inventory inventario;
+    List<Element> elementos;
+    
 
     @Override
     public void load(GameContainer container) throws SlickException {
@@ -32,5 +37,6 @@ public class Player implements Animable {
     public void render(GameContainer container, Graphics g) throws SlickException {
         
     }
+    
     
 }

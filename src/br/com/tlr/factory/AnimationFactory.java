@@ -5,6 +5,7 @@
  */
 package br.com.tlr.factory;
 
+import OLD_PACKAGES.AbstractFactory;
 import br.com.tlr.encapsulation.Animacoes;
 import br.com.tlr.encapsulation.Animacao;
 import br.com.tlr.encapsulation.AnimationEnum;

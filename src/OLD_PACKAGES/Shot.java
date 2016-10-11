@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.tlr.elements;
+package OLD_PACKAGES;
 
 import static br.com.tlr.factory.AnimationFactory.SPRITES_DIR;
 import org.newdawn.slick.Animation;

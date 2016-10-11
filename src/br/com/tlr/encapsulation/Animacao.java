@@ -7,6 +7,7 @@ package br.com.tlr.encapsulation;
 
 import br.com.tlr.elements.Animable;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -30,6 +31,7 @@ public class Animacao implements Animable {
     private final int lastX;
     /** Interface com método de movimentação */
     public Move move;
+    private Color color = Color.gray;
 
     /** Animação do Slick2D */
     private Animation animation;
@@ -132,7 +134,11 @@ public class Animacao implements Animable {
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        animation.draw(pos.getX(), pos.getY());
+        animation.draw(pos.getX(), pos.getY(), color);
+    }
+    
+    public void setColor (Color color){
+        this.color = color;
     }
 
 }

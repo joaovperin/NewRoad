@@ -11,10 +11,11 @@ import org.newdawn.slick.state.BasicGameState;
  */
 public enum StatesEnum {
 
-    MAINMENU(new GameMenu()), GRASS_MAP(new LevelGrass()), GAME_OVER(new GameOver());
-//    , SPLASHSCREEN, MAINMENU, GAME;  Adicionar estes states depois
+    MENU(null), INVENTORY(null), GAMEPLAY(new GamePlay()), GAMEOVER(null);
 
-    /** Estado */
+    /**
+     * Estado
+     */
     private final BasicGameState state;
 
     /**

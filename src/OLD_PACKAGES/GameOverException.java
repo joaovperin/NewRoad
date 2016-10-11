@@ -2,7 +2,7 @@
  * TestLonelyRoad
  * CopyRight Rech Informática Ltda. Todos os direitos reservados.
  */
-package br.com.tlr.exception;
+package OLD_PACKAGES;
 
 /**
  * Exception a ser utilizada para finalizar o jogo

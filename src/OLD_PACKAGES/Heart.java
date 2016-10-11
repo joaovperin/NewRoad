@@ -2,8 +2,9 @@
  * TestLonelyRoad
  * CopyRight Rech Informática Ltda. Todos os direitos reservados.
  */
-package br.com.tlr.elements;
+package OLD_PACKAGES;
 
+import br.com.tlr.elements.Animable;
 import static br.com.tlr.factory.AnimationFactory.SPRITES_DIR;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -24,15 +25,15 @@ public class Heart extends Movable implements Animable {
     private boolean isAlive;
 
     public Heart() {
-        super(50, 50);
+        this(50, 50);
     }
 
     public Heart(int wid, int hei) {
-        super(wid, hei);
+        this(wid, hei, 0, 0);
     }
 
     public Heart(float wid, float hei, float x, float y) {
-        super(wid, hei);
+        super(wid, hei, null);
         setX(x);
         setY(y);
     }

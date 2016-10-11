@@ -14,9 +14,7 @@ import org.newdawn.slick.SlickException;
  *
  * @author 0199831
  */
-public class Player implements Animable {
-    
-    Animacoes animacoes;
+public class MovableElement extends Element  {
 
     @Override
     public void load(GameContainer container) throws SlickException {

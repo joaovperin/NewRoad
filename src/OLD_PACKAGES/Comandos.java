@@ -2,7 +2,7 @@
  * TestLonelyRoad
  * CopyRight Rech Informática Ltda. Todos os direitos reservados.
  */
-package br.com.tlr.elements;
+package OLD_PACKAGES;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.command.BasicCommand;

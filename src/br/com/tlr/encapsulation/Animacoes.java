@@ -7,6 +7,7 @@ package br.com.tlr.encapsulation;
 
 import br.com.tlr.elements.Animable;
 import java.util.List;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -107,6 +108,10 @@ public class Animacoes implements Animable {
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
         getCurrent().render(container, g);
+    }
+    
+    public void setColor (Color color){
+        getCurrent().setColor(color);
     }
 
     /**

@@ -14,9 +14,9 @@ import org.newdawn.slick.SlickException;
  *
  * @author 0199831
  */
-public class Player implements Animable {
+public class Inventory  implements Animable  {
     
-    Animacoes animacoes;
+    int vida;
 
     @Override
     public void load(GameContainer container) throws SlickException {
@@ -25,12 +25,10 @@ public class Player implements Animable {
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException, GameOverException {
-        
     }
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        
     }
     
 }

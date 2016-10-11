@@ -2,7 +2,7 @@
  * TestLonelyRoad
  * CopyRight Rech Informática Ltda. Todos os direitos reservados.
  */
-package br.com.tlr.manager;
+package OLD_PACKAGES;
 
 /**
  * Descrição da classe.

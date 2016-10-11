@@ -19,13 +19,13 @@ public class TheLonelyRoad extends StateBasedGame {
     public static final int WIDTH = 640;
     public static final int HEIGHT = 480;
     public static final int FPS = 60;
-    public static final double VERSION = 1.0;
+    public static final double VERSION = 0.01;
 
     /**
      * Construtor padrão do game
      */
     public TheLonelyRoad() {
-        super("The Lonely Road");
+        super("Nome do jogo");
     }
 
     /**

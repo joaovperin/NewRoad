@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.tlr.elements;
+package OLD_PACKAGES;
 
 /**
  * * Classe abstrata para todos os itens que podem se mover
@@ -17,9 +17,10 @@ public abstract class Movable extends SpacialElement {
      *
      * @param width
      * @param height
+     * @param collisionManager
      */
-    public Movable(float width, float height) {
-        super(width, height);
+    public Movable(float width, float height, CollisionManager collisionManager) {
+        super(width, height, collisionManager);
     }
 
     /**
