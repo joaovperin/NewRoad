@@ -27,6 +27,11 @@ public class Menu extends BasicGameState {
     private Font texto;
 
     private Image btImg;
+    
+    //https://sourceforge.net/p/jmmorpg/code/HEAD/tree/JMMORPG/src/game/cliente/core/PathFinder.java#l6
+    //http://xswing.net/?page_id=6
+    //http://slick.ninjacave.com/forum/viewtopic.php?t=3436
+    //nifty slick2d example
 
     /** Botão play */
     private Button btPlay;
