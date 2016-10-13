@@ -5,37 +5,39 @@
  */
 package br.com.tlr.elements;
 
+import br.com.tlr.interfaces.Renderable;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 /**
+ * Objeto responsável pelo controle do Level
  *
  * @author 0199831
  */
-public class Level implements Animable {
-    
+public class Level implements Renderable {
+
+    /** Mapa do jogo */
     Mapa mapa;
+    /** Jogador */
     Player player;
-    Inventory inventario;
-    List<Element> elementos;
-    
+    /** Barras laterais */
+    SideBar sidebar;
 
     @Override
     public void load(GameContainer container) throws SlickException {
-        
+
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
-        
+
     }
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        
+
     }
-    
-    
+
 }

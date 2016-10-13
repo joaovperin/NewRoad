@@ -11,13 +11,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Estado -> GamePlay
+ * Estado -> Tela de configurações
  */
-public class GamePlay extends BasicGameState {
+public class ConfigScreen extends BasicGameState {
 
     @Override
     public int getID() {
-        return 1;
+        return 2;
     }
 
     /**

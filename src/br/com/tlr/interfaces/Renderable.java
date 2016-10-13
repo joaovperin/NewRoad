@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.tlr.elements;
+package br.com.tlr.interfaces;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 /**
- * Interface para todos os itens animáveis
+ * Interface para todos os itens renderizáveis
  *
  * @author 0199831
  */
-public interface Animable {
+public interface Renderable {
 
     /**
      * Carrega as imagens e as animações

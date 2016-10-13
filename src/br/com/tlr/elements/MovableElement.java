@@ -5,6 +5,7 @@
  */
 package br.com.tlr.elements;
 
+import br.com.tlr.interfaces.Element;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;

@@ -2,16 +2,20 @@
  * TestLonelyRoad
  * CopyRight Rech Informática Ltda. Todos os direitos reservados.
  */
-package br.com.tlr.game.states;
+package br.com.tlr.database;
 
+import br.com.tlr.game.states.ConfigScreen;
+import br.com.tlr.game.states.GameOver;
+import br.com.tlr.game.states.GamePlay;
+import br.com.tlr.game.states.Menu;
 import org.newdawn.slick.state.BasicGameState;
 
 /**
- * Game state identifiers
+ * Identificadores dos estados possíveis do jogo
  */
-public enum StatesEnum {
+public enum GameStates {
 
-    MENU(null), INVENTORY(null), GAMEPLAY(new GamePlay()), GAMEOVER(null);
+    MENU(new Menu()), GAMEPLAY(new GamePlay()), CONFIGSCREEN(new ConfigScreen()), GAMEOVER(new GameOver());
 
     /**
      * Estado
@@ -21,7 +25,7 @@ public enum StatesEnum {
     /**
      * Construtor padrão do estado
      */
-    private StatesEnum(BasicGameState state) {
+    private GameStates(BasicGameState state) {
         this.state = state;
     }
 

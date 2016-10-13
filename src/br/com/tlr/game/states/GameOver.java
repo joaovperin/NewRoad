@@ -11,13 +11,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Estado -> GamePlay
+ * Estado -> Game Over
  */
-public class GamePlay extends BasicGameState {
+public class GameOver extends BasicGameState {
 
     @Override
     public int getID() {
-        return 1;
+        return 3;
     }
 
     /**

@@ -14,22 +14,25 @@ import org.newdawn.slick.SlickException;
  * @author 0199831
  */
 public class Player extends MovableElement {
-    
-    Animacoes animacoes;
+
+    /** Inventário */
+    Inventory inventario;
+    /** Itens equipados */
+    Equipped equipped;
 
     @Override
     public void load(GameContainer container) throws SlickException {
-        
+
     }
 
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
-        
+
     }
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        
+
     }
-    
+
 }
