@@ -60,12 +60,12 @@ public class Menu extends BasicGameState {
      * @throws SlickException Problema no carregamento dos objetos na API
      */
     @Override
-    public void init(GameContainer container, StateBasedGame game) throws SlickException {
+    public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         background = new Image("data/menu/bg-squares-3d.jpg");
         texto = new AngelCodeFont("org/newdawn/slick/data/defaultfont.fnt", "org/newdawn/slick/data/defaultfont.png");
-        btPlay = new Button();
         btImg = new Image("data/menu/bt1.png");
-        btPlay.load(container);
+        btPlay = new Button("oie hehe", (gc.getWidth() / 2), gc.getHeight() / 15 + 50, 250f, 40f);
+        btPlay.load(gc);
     }
 
     /**

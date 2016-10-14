@@ -63,4 +63,13 @@ public class TheNewRoad extends StateBasedGame {
         this.enterState(GameStates.MENU.getId());
     }
 
+    /**
+     * Retorna verdadeiro se está em modo DEBUG
+     *
+     * @return boolean
+     */
+    public static final boolean isDebugMode(){
+        return false;
+    }
+
 }
