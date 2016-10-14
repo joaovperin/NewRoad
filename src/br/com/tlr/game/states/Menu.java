@@ -4,7 +4,7 @@
  */
 package br.com.tlr.game.states;
 
-import java.awt.Button;
+import br.com.tlr.graphics.ui.Button;
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -27,7 +27,7 @@ public class Menu extends BasicGameState {
     private Font texto;
 
     private Image btImg;
-    
+
     //https://sourceforge.net/p/jmmorpg/code/HEAD/tree/JMMORPG/src/game/cliente/core/PathFinder.java#l6
     //http://xswing.net/?page_id=6
     //http://slick.ninjacave.com/forum/viewtopic.php?t=3436
@@ -41,7 +41,7 @@ public class Menu extends BasicGameState {
     // https://docs.jmonkeyengine.org/advanced/nifty_gui.html
     // http://vimeo.com/25637085
 
-    
+
     // Try alternatives like Nifty GUI which is compatible with slick
     // Pesquisar por Slick2D button no google
     // Ler http://stackoverflow.com/questions/17970481/slick2d-gui-button-listener
@@ -63,8 +63,9 @@ public class Menu extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         background = new Image("data/menu/bg-squares-3d.jpg");
         texto = new AngelCodeFont("org/newdawn/slick/data/defaultfont.fnt", "org/newdawn/slick/data/defaultfont.png");
-        btPlay = new Button("Teste");
+        btPlay = new Button();
         btImg = new Image("data/menu/bt1.png");
+        btPlay.load(container);
     }
 
     /**
@@ -79,6 +80,7 @@ public class Menu extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         Input input = container.getInput();
 
+        btPlay.update(container, delta);
         int x = 0;
         int y = 0;
 
@@ -103,6 +105,7 @@ public class Menu extends BasicGameState {
         background.draw();
         btImg.draw();
         texto.drawString(150f, 50f, "TESTE STRING", Color.yellow);
+        btPlay.render(container, g);
 //        btPlay.p
     }
 
