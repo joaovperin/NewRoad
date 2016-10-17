@@ -37,7 +37,6 @@ public class TheNewRoad extends StateBasedGame {
         try {
             // Descomentar linha abaixo caso não consiga carregar a API (vai cair MUITO o FPS)
 //            System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL", "true");
-            System.out.println("Perin Lindo");
             AppGameContainer app = new AppGameContainer(new TheNewRoad());
             app.setDisplayMode(WIDTH, HEIGHT, false);
             // Determina um limite de quadros por segundo
