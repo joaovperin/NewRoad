@@ -9,6 +9,7 @@ import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Itens equipados no jogador
@@ -26,16 +27,16 @@ public class Equipped implements Renderable {
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
+    public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         for (Item item : itens) {
-            item.update(container, delta);
+            item.update(container, game, delta);
         }
     }
 
     @Override
-    public void render(GameContainer container, Graphics g) throws SlickException {
+    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         for (Item item : itens) {
-            item.render(container, g);
+            item.render(container, game, g);
         }
     }
 

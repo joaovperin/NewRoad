@@ -8,6 +8,7 @@ package br.com.tlr.interfaces;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Interface para todos os itens renderizáveis
@@ -31,7 +32,7 @@ public interface Renderable {
      * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
-    public void update(GameContainer container, int delta) throws SlickException;
+    public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException;
 
     /**
      * Renderiza as imagens do jogo
@@ -40,6 +41,6 @@ public interface Renderable {
      * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
-    public void render(GameContainer container, Graphics g) throws SlickException;
+    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException;
 
 }

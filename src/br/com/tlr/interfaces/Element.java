@@ -8,6 +8,7 @@ package br.com.tlr.interfaces;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
  *
@@ -32,7 +33,7 @@ public abstract class Element implements Renderable {
      * @throws SlickException Problema ao atualizar quadros
      */
     @Override
-    public abstract void update(GameContainer container, int delta) throws SlickException;
+    public abstract void update(GameContainer container, StateBasedGame game, int delta) throws SlickException;
 
     /**
      * Renderiza as imagens do jogo
@@ -42,6 +43,6 @@ public abstract class Element implements Renderable {
      * @throws SlickException Problema na renderização de imagens na API
      */
     @Override
-    public abstract void render(GameContainer container, Graphics g) throws SlickException;
+    public abstract void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException;
 
 }

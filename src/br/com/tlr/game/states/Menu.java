@@ -26,8 +26,6 @@ public class Menu extends BasicGameState {
     /** Fonte padrão para escrever textos */
     private Font texto;
 
-    private Image btImg;
-
     //https://sourceforge.net/p/jmmorpg/code/HEAD/tree/JMMORPG/src/game/cliente/core/PathFinder.java#l6
     //http://xswing.net/?page_id=6
     //http://slick.ninjacave.com/forum/viewtopic.php?t=3436
@@ -55,7 +53,7 @@ public class Menu extends BasicGameState {
     /**
      * Carrega as imagens e as animações
      *
-     * @param container Container do jogo
+     * @param gc Container do jogo
      * @param game
      * @throws SlickException Problema no carregamento dos objetos na API
      */
@@ -63,7 +61,6 @@ public class Menu extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame game) throws SlickException {
         background = new Image("data/menu/bg-squares-3d.jpg");
         texto = new AngelCodeFont("org/newdawn/slick/data/defaultfont.fnt", "org/newdawn/slick/data/defaultfont.png");
-        btImg = new Image("data/menu/bt1.png");
         btPlay = new Button("oie hehe", (gc.getWidth() / 2), gc.getHeight() / 15 + 50, 250f, 40f);
         btPlay.load(gc);
     }
@@ -80,16 +77,7 @@ public class Menu extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         Input input = container.getInput();
 
-        btPlay.update(container, delta);
-        int x = 0;
-        int y = 0;
-
-        String msg = "  --- ";
-        if(input.getMouseX() > x && input.getAbsoluteMouseY() > y && input.getMouseX() < x + btImg.getWidth()
-            && input.getMouseY() < y + btImg.getHeight()){
-            msg = "em cima do bt";
-        }
-        System.out.println(msg);
+        btPlay.update(container, game, delta);
     }
 
     /**
@@ -103,10 +91,8 @@ public class Menu extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw();
-        btImg.draw();
-        texto.drawString(150f, 50f, "TESTE STRING", Color.yellow);
-        btPlay.render(container, g);
-//        btPlay.p
+//        texto.drawString(150f, 50f, "TESTE STRING", Color.yellow);
+        btPlay.render(container, game, g);
     }
 
 }
