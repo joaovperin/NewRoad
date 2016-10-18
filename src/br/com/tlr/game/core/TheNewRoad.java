@@ -20,6 +20,8 @@ public class TheNewRoad extends StateBasedGame {
     public static final int HEIGHT = 480;
     public static final int FPS = 120;
     public static final double VERSION = 0.01;
+    /** Se estiver em modo DEBUG */
+    private static final boolean DEBUG_MODE = false;
 
     /**
      * Construtor padrão do game
@@ -56,7 +58,7 @@ public class TheNewRoad extends StateBasedGame {
      */
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
-        for (GameStates state : GameStates.values()){
+        for (GameStates state : GameStates.values()) {
             this.addState(state.getState());
         }
         // Inicializa no menu principal
@@ -68,8 +70,8 @@ public class TheNewRoad extends StateBasedGame {
      *
      * @return boolean
      */
-    public static final boolean isDebugMode(){
-        return false;
+    public static final boolean isDebugMode() {
+        return DEBUG_MODE;
     }
 
 }

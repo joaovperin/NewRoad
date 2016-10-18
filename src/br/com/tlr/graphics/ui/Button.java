@@ -4,6 +4,7 @@
  */
 package br.com.tlr.graphics.ui;
 
+import br.com.tlr.custom.Cor;
 import br.com.tlr.game.core.TheNewRoad;
 import br.com.tlr.interfaces.Renderable;
 import org.newdawn.slick.AngelCodeFont;
@@ -41,9 +42,10 @@ public class Button implements Renderable {
     /** Está clicando em cima? Botão direito */
     private boolean isClickingRight;
 
+    private String corAtual;
     private Shape shape;
     private Font font;
-    private Color shapeColor;
+    private String shapeColor;
     private Color fontColor;
     private Circle cursor;
 
@@ -57,7 +59,7 @@ public class Button implements Renderable {
         this.cY = cY;
         this.width = width;
         this.height = height;
-        this.shapeColor = shapeColor;
+        this.shapeColor = Cor.encode(shapeColor);
         this.fontColor = fontColor;
         this.id = NUM_BUTTONS++;
     }
@@ -80,20 +82,19 @@ public class Button implements Renderable {
         if (shape.contains(cursor) || cursor.intersects(shape)) {
             isClickingLeft = input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON);
             isClickingRight = input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON) && !isClickingLeft;
-            shapeColor = isClickingLeft ? Color.green : (isClickingRight ? Color.magenta : Color.cyan);
+//            shapeColor = isClickingLeft ? Color.green : (isClickingRight ? getColor("FF00FF") : Color.cyan);
         } else {
-            shapeColor = Color.blue;
+//            shapeColor = Color.blue;
         }
     }
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        g.setColor(shapeColor);
+        g.setColor(Color.decode(shapeColor));
         g.fill(shape);
         g.setColor(fontColor);
-        g.
-                drawString(desc, (shape.getCenterX() - font.getWidth(desc) / 2), shape.getCenterY() - font.
-                        getHeight(desc) / 2);
+        g.drawString(desc, (shape.getCenterX() - font.getWidth(desc) / 2), shape.getCenterY() - font.
+                getHeight(desc) / 2);
         // Se estiver em modo Debug
         if (TheNewRoad.isDebugMode()) {
             g.draw(cursor);

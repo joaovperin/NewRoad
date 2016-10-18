@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 /**
  * Descrição da classe.
  */
-public abstract class Item  implements Renderable {
+public abstract class Item implements Renderable {
 
     /** Id do item */
     private int id;
