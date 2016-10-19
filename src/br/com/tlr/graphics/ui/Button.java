@@ -5,6 +5,8 @@
 package br.com.tlr.graphics.ui;
 
 import br.com.tlr.custom.Cor;
+import br.com.tlr.database.GameStates;
+import br.com.tlr.game.core.Resources;
 import br.com.tlr.game.core.TheNewRoad;
 import br.com.tlr.interfaces.Renderable;
 import org.newdawn.slick.AngelCodeFont;
@@ -90,9 +92,6 @@ public class Button implements Renderable {
             currentColor = shapeColor.scaleCopy(0.8f);
             isClickingLeft = input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON);
             isClickingRight = input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON) && !isClickingLeft;
-            if (isClickingLeft) {
-                game.enterState(2);
-            }
 //            shapeColor = isClickingLeft ? Color.green : (isClickingRight ? getColor("FF00FF") : Color.cyan);
         } else {
             currentColor = shapeColor;
@@ -122,6 +121,10 @@ public class Button implements Renderable {
         if (TheNewRoad.isDebugMode()) {
             g.draw(cursor);
         }
+    }
+
+    public boolean isClickingLeft() {
+        return isClickingLeft;
     }
 
 }

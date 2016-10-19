@@ -4,6 +4,8 @@
  */
 package br.com.tlr.game.states;
 
+import br.com.tlr.database.GameStates;
+import br.com.tlr.game.core.Resources;
 import br.com.tlr.graphics.ui.Button;
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
@@ -30,7 +32,6 @@ public class Menu extends BasicGameState {
     //http://xswing.net/?page_id=6
     //http://slick.ninjacave.com/forum/viewtopic.php?t=3436
     //nifty slick2d example
-
     /** Botão play */
     private Button btPlay;
     // Utilizar Nifty GUI
@@ -39,12 +40,10 @@ public class Menu extends BasicGameState {
     // https://docs.jmonkeyengine.org/advanced/nifty_gui.html
     // http://vimeo.com/25637085
 
-
     // Try alternatives like Nifty GUI which is compatible with slick
     // Pesquisar por Slick2D button no google
     // Ler http://stackoverflow.com/questions/17970481/slick2d-gui-button-listener
     // https://www.youtube.com/watch?v=lLYzToAaGQQ
-
     @Override
     public int getID() {
         return 0;
@@ -53,7 +52,7 @@ public class Menu extends BasicGameState {
     /**
      * Carrega as imagens e as animações
      *
-     * @param gc Container do jogo
+     * @param gc   Container do jogo
      * @param game
      * @throws SlickException Problema no carregamento dos objetos na API
      */
@@ -70,14 +69,18 @@ public class Menu extends BasicGameState {
      *
      * @param container Container do jogo
      * @param game
-     * @param delta Tempo de atualização
+     * @param delta     Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        Input input = container.getInput();
-
         btPlay.update(container, game, delta);
+        // Se clicar no botão Play, abre o jogo
+        if (btPlay.isClickingLeft()) {
+            game.enterState(Resources.get().getState(GameStates.GAMEPLAY).getID(),
+                    Resources.get().getTransition(0),
+                    Resources.get().getTransition(1));
+        }
     }
 
     /**
@@ -85,13 +88,12 @@ public class Menu extends BasicGameState {
      *
      * @param container Container do jogo
      * @param game
-     * @param g Contexto gráfico usado para renderizar o canvas
+     * @param g         Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw();
-//        texto.drawString(150f, 50f, "TESTE STRING", Color.yellow);
         btPlay.render(container, game, g);
     }
 

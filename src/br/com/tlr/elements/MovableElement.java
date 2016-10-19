@@ -15,7 +15,10 @@ import org.newdawn.slick.state.StateBasedGame;
  *
  * @author 0199831
  */
-public class MovableElement extends Element  {
+public class MovableElement extends Element {
+
+    protected boolean canMove;
+    protected float dx, dy;
 
     @Override
     public void load(GameContainer container) throws SlickException {
@@ -25,11 +28,24 @@ public class MovableElement extends Element  {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
+        clear();
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
+    }
+
+    protected void move() {
+        if (canMove) {
+            setX(getX() + dx);
+            setY(getY() + dy);
+        }
+    }
+
+    private void clear() {
+        dx = 0;
+        dy = 0;
     }
 
 }
