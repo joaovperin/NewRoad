@@ -36,6 +36,11 @@ public class Comandos {
     protected final Control keyDown = new KeyControl(Input.KEY_DOWN);
     protected final Control keyLeft = new KeyControl(Input.KEY_LEFT);
     protected final Control keyRight = new KeyControl(Input.KEY_RIGHT);
+
+    protected final Control keyW = new KeyControl(Input.KEY_W);
+    protected final Control keyS = new KeyControl(Input.KEY_S);
+    protected final Control keyA = new KeyControl(Input.KEY_A);
+    protected final Control keyD = new KeyControl(Input.KEY_D);
     protected final Control mouseRClick = new MouseButtonControl(0);
 
     /**
@@ -49,6 +54,11 @@ public class Comandos {
         provider.bindCommand(keyLeft, cLeft);
         provider.bindCommand(keyRight, cRight);
         provider.bindCommand(mouseRClick, cAttack);
+
+        provider.bindCommand(keyW, cUp);
+        provider.bindCommand(keyS, cDown);
+        provider.bindCommand(keyA, cLeft);
+        provider.bindCommand(keyD, cRight);
     }
 
     /**
@@ -114,16 +124,19 @@ public class Comandos {
         return attack;
     }
 
-    public boolean canMoveUp(float current, float target){
+    public boolean canMoveUp(float current, float target) {
         return !(current <= target);
     }
-    public boolean canMoveDown(float current, float target){
+
+    public boolean canMoveDown(float current, float target) {
         return !(current >= target);
     }
-    public boolean canMoveLeft(float current, float target){
-        return ! (current <= target);
+
+    public boolean canMoveLeft(float current, float target) {
+        return !(current <= target);
     }
-    public boolean canMoveRight(float current, float target){
+
+    public boolean canMoveRight(float current, float target) {
         return !(current >= target);
     }
 

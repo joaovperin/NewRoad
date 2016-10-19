@@ -28,7 +28,6 @@ public class MovableElement extends Element {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
-        clear();
     }
 
     @Override
@@ -41,6 +40,7 @@ public class MovableElement extends Element {
             setX(getX() + dx);
             setY(getY() + dy);
         }
+        clear();
     }
 
     private void clear() {

@@ -67,10 +67,10 @@ public class Player extends MovableElement implements InputProviderListener {
         Input input = container.getInput();
 
         if (comandos.isDownCmd()) {
-            dy = -2;
+            dy = 2;
         }
         if (comandos.isUpCmd()) {
-            dy = 2;
+            dy = -2;
         }
         if (comandos.isLeftCmd()) {
             dx = -2;
@@ -81,18 +81,6 @@ public class Player extends MovableElement implements InputProviderListener {
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             canMove = !canMove;
-        }
-        if (input.isKeyPressed(Input.KEY_W)) {
-            dy = -2;
-        }
-        if (input.isKeyPressed(Input.KEY_S)) {
-            dy = 2;
-        }
-        if (input.isKeyPressed(Input.KEY_A)) {
-            dx = -2;
-        }
-        if (input.isKeyPressed(Input.KEY_D)) {
-            dx = 2;
         }
         move();
 //        current.update(delta);
@@ -111,6 +99,17 @@ public class Player extends MovableElement implements InputProviderListener {
             g.setColor(Color.yellow);
             g.fill(shape);
         }
+        // Se não puder se mover
+        if (!canMove) {
+            g.setColor(Color.yellow);
+            float x = container.getWidth() * 0.625f;
+            float y = container.getHeight() * 0.10416f;
+            g.drawString("YOU'RE PARALIZED!!", x, y);
+            y += 50f;
+            g.setColor(Color.yellow);
+            g.drawString("Press SPACE to move again.", x, y);
+        }
+
     }
 
     @Override
