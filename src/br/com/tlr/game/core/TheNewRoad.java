@@ -37,7 +37,7 @@ public class TheNewRoad extends StateBasedGame {
      */
     public static void main(String[] arguments) {
         try {
-            // Descomentar linha abaixo caso não consiga carregar a API (vai cair MUITO o FPS)
+            // Força a permissão de renderização OpenGL
             System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL", "true");
             AppGameContainer app = new AppGameContainer(new TheNewRoad());
             app.setDisplayMode(WIDTH, HEIGHT, false);

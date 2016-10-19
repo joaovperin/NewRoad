@@ -20,27 +20,29 @@ public interface Renderable {
     /**
      * Carrega as imagens e as animações
      *
-     * @param container Container do jogo
+     * @param gc Container do jogo
      * @throws SlickException Problema no carregamento dos objetos na API
      */
-    public void load(GameContainer container) throws SlickException;
+    public void load(GameContainer gc) throws SlickException;
 
     /**
      * Atualiza os frames do jogo
      *
-     * @param container Container do jogo
+     * @param gc Container do jogo
+     * @param game Aplicação do game
      * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
-    public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException;
+    public void update(GameContainer gc, StateBasedGame game, int delta) throws SlickException;
 
     /**
      * Renderiza as imagens do jogo
      *
-     * @param container Container do jogo
+     * @param gc Container do jogo
+     * @param game Aplicação do game
      * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
-    public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException;
+    public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException;
 
 }

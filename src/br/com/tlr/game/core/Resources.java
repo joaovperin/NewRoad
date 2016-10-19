@@ -5,11 +5,13 @@
  */
 package br.com.tlr.game.core;
 
+import br.com.tlr.interfaces.Singleton;
 import br.com.tlr.database.GameStates;
 import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
@@ -91,8 +93,12 @@ public class Resources implements Singleton {
         return states.get(st.getId());
     }
 
-    /** 
-     * 
+    /**
+     *
+     * Retorna uma transição a partir do ID
+     *
+     * @param id
+     * @return
      */
     public final Transition getTransition(int id) {
         return transitions.get(id);

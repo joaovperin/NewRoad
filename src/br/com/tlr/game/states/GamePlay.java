@@ -5,6 +5,8 @@
 package br.com.tlr.game.states;
 
 import br.com.tlr.elements.Player;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -15,13 +17,24 @@ import org.newdawn.slick.state.StateBasedGame;
  * Estado -> GamePlay
  */
 public class GamePlay extends BasicGameState {
-    
+
     /** Jogador um */
     private Player p1;
 
     @Override
     public int getID() {
         return 1;
+    }
+
+    /**
+     * Construtor padrão para instanciar todas as dependências
+     */
+    public GamePlay() {
+        try {
+            p1 = new Player();
+        } catch (SlickException e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -33,7 +46,6 @@ public class GamePlay extends BasicGameState {
      */
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        p1 = new Player();
         p1.load(container);
     }
 
@@ -42,7 +54,7 @@ public class GamePlay extends BasicGameState {
      *
      * @param container Container do jogo
      * @param game
-     * @param delta     Tempo de atualização
+     * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
     @Override
@@ -55,7 +67,7 @@ public class GamePlay extends BasicGameState {
      *
      * @param container Container do jogo
      * @param game
-     * @param g         Contexto gráfico usado para renderizar o canvas
+     * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
     @Override

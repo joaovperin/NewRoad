@@ -27,7 +27,6 @@ public enum GameStates {
      */
     private GameStates(BasicGameState state) {
         this.state = state;
-        System.out.println("BAUSHAUSHAHAJKH");
     }
 
     /**
