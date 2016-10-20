@@ -16,6 +16,7 @@ import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -30,6 +31,9 @@ public class Player extends MovableElement implements InputProviderListener {
     /** Itens equipados */
     Equipped equipped;
 
+    float height;
+    float width;
+
     /** Gerenciador de inputs */
     protected InputProvider provider;
     /** Objeto responsável pelo gerenciamento de comandos */
@@ -37,11 +41,10 @@ public class Player extends MovableElement implements InputProviderListener {
 
     Image img;
 
-    Animation current;
-    Animation up;
-    Animation down;
-    Animation left;
-    Animation right;
+    /**
+     * Set de animações do jogador
+     */
+    protected Animacao player;
 
     /**
      * Construtor padrão para instanciar todas as dependências
@@ -59,6 +62,7 @@ public class Player extends MovableElement implements InputProviderListener {
         // Amarra comandos no gerenciador InputProvider
         comandos.bindComandos(provider);
         canMove = true;
+        player.load(container);
 //        current = new Animation(true);
     }
 
@@ -66,6 +70,9 @@ public class Player extends MovableElement implements InputProviderListener {
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         Input input = container.getInput();
 
+        /**
+         * Comandos -> Movimentação do player 1
+         */
         if (comandos.isDownCmd()) {
             dy = 2;
         }
@@ -78,7 +85,7 @@ public class Player extends MovableElement implements InputProviderListener {
         if (comandos.isRightCmd()) {
             dx = 2;
         }
-
+        // Se pressionar espaço, não permite movimento
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             canMove = !canMove;
         }
@@ -91,6 +98,7 @@ public class Player extends MovableElement implements InputProviderListener {
 //        current.draw(getX(), getY());
         Input input = container.getInput();
         img.draw(getX(), getY());
+        player.get(); // DRAW
         // Se deve atacar
         Shape shape = new Circle(0f, 0f, 25f);
         if (comandos.isAtkCmd()) {
@@ -105,9 +113,8 @@ public class Player extends MovableElement implements InputProviderListener {
             float x = container.getWidth() * 0.625f;
             float y = container.getHeight() * 0.10416f;
             g.drawString("YOU'RE PARALIZED!!", x, y);
-            y += 50f;
             g.setColor(Color.yellow);
-            g.drawString("Press SPACE to move again.", x, y);
+            g.drawString("Press SPACE to move again.", x, y + 50f);
         }
 
     }
@@ -121,5 +128,45 @@ public class Player extends MovableElement implements InputProviderListener {
     public void controlReleased(Command cmd) {
         comandos.unsetComandos(cmd);
     }
+
+    /**
+     * COLOCAR NA SUPER CLASSE (DEPOIS):
+     */
+
+    /**
+     * Retorna as dimensões dos pés do jogador (para checar colisões)
+     *
+     * @return Shape
+     */
+    public Shape getDimPes() {
+        return new RoundedRectangle(getX() + 8, getY() + 40, width - 14, height / 6, 30f);
+    }
+
+    /**
+     * Retorna as dimensões do corpo inteiro do jogador (para checar colisões)
+     *
+     * @return Shape
+     */
+    public Shape getDim() {
+        //TODO(Perin): Conferir / concertar quando for utilizar
+        return new RoundedRectangle(getX() + 8, getY() + 40, width, height , 30f);
+    }
+
+    private void createAnimacao(){
+
+        // Carrega sprites para as animações de movimentos
+//        SpriteSheet sheet = new SpriteSheet(SPRITES_DIR + name, width, height);
+//        List<Animacao> list = new ArrayList<>();
+//        // Percorre argumentos criando animações
+//        for (AnimationEnum arg : args) {
+//            list.add(new Animacao(arg, num, sheet));
+//        }
+//        // Retorna lista criada
+//        return new Animacoes(list, width, height);
+//        new Animation(sheet, 0, code, lastX, code, true, createDuration(), true);
+
+
+    }
+
 
 }

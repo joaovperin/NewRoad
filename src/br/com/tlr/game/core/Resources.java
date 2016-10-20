@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
