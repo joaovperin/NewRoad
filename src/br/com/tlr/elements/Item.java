@@ -5,6 +5,7 @@
 package br.com.tlr.elements;
 
 import br.com.tlr.interfaces.Renderable;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -16,11 +17,19 @@ import org.newdawn.slick.state.StateBasedGame;
 public abstract class Item implements Renderable {
 
     /** Id do item */
-    private int id;
+    private final int id;
     /** Tipo do item */
-    private int type;
+    private final int type;
     /** Descrição do item */
-    private String nome;
+    private final String nome;
+    /** Se deve mostrar o item */
+    private boolean show;
+
+    public Item(int id, int type, String nome) {
+        this.id = id;
+        this.type = type;
+        this.nome = nome;
+    }
 
     @Override
     public void load(GameContainer container) throws SlickException {
@@ -33,6 +42,9 @@ public abstract class Item implements Renderable {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+        if (show){
+            getItemById(id).draw();
+        }
     }
 
     public int getId() {
@@ -41,6 +53,10 @@ public abstract class Item implements Renderable {
 
     public String getNome() {
         return nome;
+    }
+
+    private Animation getItemById(int id){
+        return new Animation();
     }
 
 }

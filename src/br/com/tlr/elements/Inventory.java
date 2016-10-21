@@ -6,6 +6,7 @@
 package br.com.tlr.elements;
 
 import br.com.tlr.interfaces.Renderable;
+import java.util.ArrayList;
 import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -23,6 +24,7 @@ public class Inventory implements Renderable {
 
     @Override
     public void load(GameContainer container) throws SlickException {
+        itens = new ArrayList<>();
         for (Item item : itens) {
             item.load(container);
         }

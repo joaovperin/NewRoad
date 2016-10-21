@@ -9,6 +9,8 @@ import br.com.tlr.interfaces.Element;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.RoundedRectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
@@ -50,7 +52,26 @@ public class MovableElement extends Element {
 
     private void clear() {
         dx = 0;
-        dy = 0;;
+        dy = 0;
+    }
+
+    /**
+     * Retorna as dimensões dos pés do jogador (para checar colisões)
+     *
+     * @return Shape
+     */
+    public Shape getFootBox() {
+        return new RoundedRectangle(getX() + 8, getY() + 40, width - 14, height / 6, 30f);
+    }
+
+    /**
+     * Retorna as dimensões do corpo inteiro do jogador (para checar colisões)
+     *
+     * @return Shape
+     */
+    public Shape getHitBox() {
+        //TODO(Perin): Conferir / concertar quando for utilizar
+        return new RoundedRectangle(getX() + 8, getY() + 40, width, height, 30f);
     }
 
 }

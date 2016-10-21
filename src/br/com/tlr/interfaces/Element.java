@@ -18,6 +18,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public abstract class Element implements Renderable {
 
     protected Vector2f pos = new Vector2f();
+    protected float height;
+    protected float width;
 
     /**
      * Carrega as imagens e as animações
@@ -32,7 +34,7 @@ public abstract class Element implements Renderable {
      * Atualiza os frames do jogo
      *
      * @param container Container do jogo
-     * @param delta     Tempo de atualização
+     * @param delta Tempo de atualização
      * @throws SlickException Problema ao atualizar quadros
      */
     @Override
@@ -42,25 +44,25 @@ public abstract class Element implements Renderable {
      * Renderiza as imagens do jogo
      *
      * @param container Container do jogo
-     * @param g         Contexto gráfico usado para renderizar o canvas
+     * @param g Contexto gráfico usado para renderizar o canvas
      * @throws SlickException Problema na renderização de imagens na API
      */
     @Override
     public abstract void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException;
-    
-    protected float getX(){
+
+    protected float getX() {
         return pos.x;
     }
-    
-    protected float getY(){
+
+    protected float getY() {
         return pos.y;
     }
-    
-    protected void setX(float x){
+
+    protected void setX(float x) {
         pos.x = x;
     }
-    
-    protected void setY(float y){
+
+    protected void setY(float y) {
         pos.y = y;
     }
 

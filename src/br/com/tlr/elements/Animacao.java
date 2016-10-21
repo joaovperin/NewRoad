@@ -63,7 +63,7 @@ public class Animacao implements Renderable {
         down = new Animation(sheet, x0, y, x1, y++, true, 200, true);
         left = new Animation(sheet, x0, y, x1, y++, true, 200, true);
         right = new Animation(sheet, x0, y, x1, y++, true, 200, true);
-        current = up;
+        current = down;
         current.setAutoUpdate(false);
     }
 

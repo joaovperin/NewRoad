@@ -8,14 +8,12 @@ package br.com.tlr.elements;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.Command;
 import org.newdawn.slick.command.InputProvider;
 import org.newdawn.slick.command.InputProviderListener;
 import org.newdawn.slick.geom.Circle;
-import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -30,17 +28,10 @@ public class Player extends MovableElement implements InputProviderListener {
     /** Itens equipados */
     Equipped equipped;
 
-    float height;
-    float width;
-
     /** Gerenciador de inputs */
     protected InputProvider provider;
     /** Objeto responsável pelo gerenciamento de comandos */
     protected Comandos comandos = new Comandos();
-
-    Image img;
-
-
 
     /**
      * Construtor padrão para instanciar todas as dependências
@@ -48,7 +39,6 @@ public class Player extends MovableElement implements InputProviderListener {
      * @throws SlickException Problema ao instanciar dependências
      */
     public Player() throws SlickException {
-        img = new Image("data/sprites/wmg1-rt1.png");
         me = new Animacao("player.png", 32, 48);
     }
 
@@ -60,14 +50,12 @@ public class Player extends MovableElement implements InputProviderListener {
         comandos.bindComandos(provider);
         canMove = true;
         me.load(container);
-        me.get().setAutoUpdate(true);
-//        current = new Animation(true);
+//        me.get().setAutoUpdate(false);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         Input input = container.getInput();
-
         /**
          * Comandos -> Movimentação do player 1
          */
@@ -92,15 +80,12 @@ public class Player extends MovableElement implements InputProviderListener {
             canMove = !canMove;
         }
         move();
-//        current.update(delta);
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-//        current.draw(getX(), getY());
         Input input = container.getInput();
-//        img.draw(getX(), getY());
-        me.get().draw(getX(), getY()); // DRAW
+        me.get().draw(getX(), getY());
         // Se deve atacar
         Shape shape = new Circle(0f, 0f, 25f);
         if (comandos.isAtkCmd()) {
@@ -121,42 +106,28 @@ public class Player extends MovableElement implements InputProviderListener {
 
     }
 
+    /**
+     * Callback default para comando Pressed
+     *
+     * @param cmd
+     */
     @Override
     public void controlPressed(Command cmd) {
-        if(comandos.setComandos(cmd)){
+        if (comandos.setComandos(cmd)) {
             me.get().setAutoUpdate(true);
         }
     }
 
+    /**
+     * Callback default para comando unPressed
+     *
+     * @param cmd
+     */
     @Override
     public void controlReleased(Command cmd) {
-        if (comandos.unsetComandos(cmd)){
+        if (comandos.unsetComandos(cmd)) {
             me.get().setAutoUpdate(false);
         }
     }
-
-    /**
-     * COLOCAR NA SUPER CLASSE (DEPOIS):
-     */
-
-    /**
-     * Retorna as dimensões dos pés do jogador (para checar colisões)
-     *
-     * @return Shape
-     */
-    public Shape getFootBox() {
-        return new RoundedRectangle(getX() + 8, getY() + 40, width - 14, height / 6, 30f);
-    }
-
-    /**
-     * Retorna as dimensões do corpo inteiro do jogador (para checar colisões)
-     *
-     * @return Shape
-     */
-    public Shape getHitBox() {
-        //TODO(Perin): Conferir / concertar quando for utilizar
-        return new RoundedRectangle(getX() + 8, getY() + 40, width, height , 30f);
-    }
-
 
 }
