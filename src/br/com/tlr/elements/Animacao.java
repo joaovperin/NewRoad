@@ -18,6 +18,13 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Animacao implements Renderable {
 
+    private static final String ANIM_DIR = "data/sprites/sheets/";
+
+    public static final int UP = 0;
+    public static final int DOWN = 1;
+    public static final int LEFT = 2;
+    public static final int RIGHT = 3;
+
     /**
      * Set de animações do jogador
      */
@@ -36,17 +43,13 @@ public class Animacao implements Renderable {
     private final int wid;
     private final int hei;
 
-
-
     // constantes pra ajeitar depois:
     private static final int x0 = 0;
-    private static final int x1 = 0;
-    private static final int y0 = 0;
-    private static final int y1 = 0;
-
+    private static final int x1 = 3;
+    private static int y = 0;
 
     public Animacao(String name, int wid, int hei) {
-        this.name = name;
+        this.name = ANIM_DIR + name;
         this.wid = wid;
         this.hei = hei;
     }
@@ -55,7 +58,12 @@ public class Animacao implements Renderable {
     public void load(GameContainer gc) throws SlickException {
         //Carrega sprites para as animações de movimentos
         sheet = new SpriteSheet(SPRITES_DIR + name, wid, hei);
-        current = new Animation(sheet, x0, y0, x1, y1, true, 200, true);
+        y = 0;
+        up = new Animation(sheet, x0, y, x1, y++, true, 200, true);
+        down = new Animation(sheet, x0, y, x1, y++, true, 200, true);
+        left = new Animation(sheet, x0, y, x1, y++, true, 200, true);
+        right = new Animation(sheet, x0, y, x1, y++, true, 200, true);
+        current = up;
     }
 
     @Override
@@ -68,8 +76,16 @@ public class Animacao implements Renderable {
 //        current.draw();
     }
 
-    public Animation get(){
+    public Animation get() {
         return current;
+    }
+
+    public void set (int dir){
+        if (dir == 0) current = up;
+        else if (dir == 1) current = down;
+        else if (dir == 2) current = left;
+        else if (dir == 3) current = right;
+
     }
 
 }

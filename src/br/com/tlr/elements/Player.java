@@ -53,6 +53,7 @@ public class Player extends MovableElement implements InputProviderListener {
      */
     public Player() throws SlickException {
         img = new Image("data/sprites/wmg1-rt1.png");
+        player = new Animacao("player.png", 32, 48);
     }
 
     @Override
@@ -63,6 +64,7 @@ public class Player extends MovableElement implements InputProviderListener {
         comandos.bindComandos(provider);
         canMove = true;
         player.load(container);
+        player.get().setAutoUpdate(true);
 //        current = new Animation(true);
     }
 
@@ -75,15 +77,19 @@ public class Player extends MovableElement implements InputProviderListener {
          */
         if (comandos.isDownCmd()) {
             dy = 2;
+            player.set(Animacao.DOWN);
         }
         if (comandos.isUpCmd()) {
             dy = -2;
+            player.set(Animacao.UP);
         }
         if (comandos.isLeftCmd()) {
             dx = -2;
+            player.set(Animacao.LEFT);
         }
         if (comandos.isRightCmd()) {
             dx = 2;
+            player.set(Animacao.RIGHT);
         }
         // Se pressionar espaço, não permite movimento
         if (input.isKeyPressed(Input.KEY_SPACE)) {
@@ -97,8 +103,8 @@ public class Player extends MovableElement implements InputProviderListener {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 //        current.draw(getX(), getY());
         Input input = container.getInput();
-        img.draw(getX(), getY());
-        player.get(); // DRAW
+//        img.draw(getX(), getY());
+        player.get().draw(getX(), getY()); // DRAW
         // Se deve atacar
         Shape shape = new Circle(0f, 0f, 25f);
         if (comandos.isAtkCmd()) {
