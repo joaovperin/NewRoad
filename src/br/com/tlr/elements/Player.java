@@ -5,7 +5,6 @@
  */
 package br.com.tlr.elements;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -41,10 +40,7 @@ public class Player extends MovableElement implements InputProviderListener {
 
     Image img;
 
-    /**
-     * Set de animações do jogador
-     */
-    protected Animacao player;
+
 
     /**
      * Construtor padrão para instanciar todas as dependências
@@ -53,7 +49,7 @@ public class Player extends MovableElement implements InputProviderListener {
      */
     public Player() throws SlickException {
         img = new Image("data/sprites/wmg1-rt1.png");
-        player = new Animacao("player.png", 32, 48);
+        me = new Animacao("player.png", 32, 48);
     }
 
     @Override
@@ -63,8 +59,8 @@ public class Player extends MovableElement implements InputProviderListener {
         // Amarra comandos no gerenciador InputProvider
         comandos.bindComandos(provider);
         canMove = true;
-        player.load(container);
-        player.get().setAutoUpdate(true);
+        me.load(container);
+        me.get().setAutoUpdate(true);
 //        current = new Animation(true);
     }
 
@@ -77,19 +73,19 @@ public class Player extends MovableElement implements InputProviderListener {
          */
         if (comandos.isDownCmd()) {
             dy = 2;
-            player.set(Animacao.DOWN);
+            me.set(Animacao.DOWN);
         }
         if (comandos.isUpCmd()) {
             dy = -2;
-            player.set(Animacao.UP);
+            me.set(Animacao.UP);
         }
         if (comandos.isLeftCmd()) {
             dx = -2;
-            player.set(Animacao.LEFT);
+            me.set(Animacao.LEFT);
         }
         if (comandos.isRightCmd()) {
             dx = 2;
-            player.set(Animacao.RIGHT);
+            me.set(Animacao.RIGHT);
         }
         // Se pressionar espaço, não permite movimento
         if (input.isKeyPressed(Input.KEY_SPACE)) {
@@ -104,7 +100,7 @@ public class Player extends MovableElement implements InputProviderListener {
 //        current.draw(getX(), getY());
         Input input = container.getInput();
 //        img.draw(getX(), getY());
-        player.get().draw(getX(), getY()); // DRAW
+        me.get().draw(getX(), getY()); // DRAW
         // Se deve atacar
         Shape shape = new Circle(0f, 0f, 25f);
         if (comandos.isAtkCmd()) {
@@ -127,12 +123,16 @@ public class Player extends MovableElement implements InputProviderListener {
 
     @Override
     public void controlPressed(Command cmd) {
-        comandos.setComandos(cmd);
+        if(comandos.setComandos(cmd)){
+            me.get().setAutoUpdate(true);
+        }
     }
 
     @Override
     public void controlReleased(Command cmd) {
-        comandos.unsetComandos(cmd);
+        if (comandos.unsetComandos(cmd)){
+            me.get().setAutoUpdate(false);
+        }
     }
 
     /**
@@ -144,7 +144,7 @@ public class Player extends MovableElement implements InputProviderListener {
      *
      * @return Shape
      */
-    public Shape getDimPes() {
+    public Shape getFootBox() {
         return new RoundedRectangle(getX() + 8, getY() + 40, width - 14, height / 6, 30f);
     }
 
@@ -153,25 +153,9 @@ public class Player extends MovableElement implements InputProviderListener {
      *
      * @return Shape
      */
-    public Shape getDim() {
+    public Shape getHitBox() {
         //TODO(Perin): Conferir / concertar quando for utilizar
         return new RoundedRectangle(getX() + 8, getY() + 40, width, height , 30f);
-    }
-
-    private void createAnimacao(){
-
-        // Carrega sprites para as animações de movimentos
-//        SpriteSheet sheet = new SpriteSheet(SPRITES_DIR + name, width, height);
-//        List<Animacao> list = new ArrayList<>();
-//        // Percorre argumentos criando animações
-//        for (AnimationEnum arg : args) {
-//            list.add(new Animacao(arg, num, sheet));
-//        }
-//        // Retorna lista criada
-//        return new Animacoes(list, width, height);
-//        new Animation(sheet, 0, code, lastX, code, true, createDuration(), true);
-
-
     }
 
 

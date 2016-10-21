@@ -17,6 +17,11 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MovableElement extends Element {
 
+    /**
+     * Set de animações do elemento
+     */
+    protected Animacao me;
+
     protected boolean canMove;
     protected float dx, dy;
 
@@ -45,7 +50,7 @@ public class MovableElement extends Element {
 
     private void clear() {
         dx = 0;
-        dy = 0;
+        dy = 0;;
     }
 
 }

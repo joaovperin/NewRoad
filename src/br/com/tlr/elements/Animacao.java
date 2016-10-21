@@ -64,6 +64,7 @@ public class Animacao implements Renderable {
         left = new Animation(sheet, x0, y, x1, y++, true, 200, true);
         right = new Animation(sheet, x0, y, x1, y++, true, 200, true);
         current = up;
+        current.setAutoUpdate(false);
     }
 
     @Override
